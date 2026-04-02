@@ -12,9 +12,7 @@ public class WindowTest extends BaseTest {
         driver.get("https://demoqa.com/browser-windows");
         windowPage.clickTabBtn();
         windowPage.clickTabBtn();
-        browserHelper.switchToWindow(3);
+        browserHelper.switchToWindow(2);
         browserHelper.switchToParentWindow();
     }
-
-//
 }

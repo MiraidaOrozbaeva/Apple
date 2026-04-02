@@ -5,16 +5,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class CheckBoxPage extends BasePage{
 
-    @FindBy(className = "text-center")
+    @FindBy(css = ".text-center")
     private WebElement textCenter;
 
-    @FindBy(className = "rct-collapse-btn")
+    @FindBy(css = ".rct-collapse-btn")
     private WebElement collapseBtnArrow;
 
-    @FindBy(className = "rct-option-expand-all")
+    @FindBy(css = ".rct-option-expand-all")
     private WebElement expandAllBtn;
 
-    @FindBy(className = "rct-option-collapse-all")
+    @FindBy(css = ".rct-option-collapse-all")
     private WebElement collapseAllBtn;
 
     public CheckBoxPage clickCollapseAllBtn(){

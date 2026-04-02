@@ -33,6 +33,16 @@ public class EndToEndTest {
     private static final String CSV_PATH = "src/main/resources/users_data.csv";
 
     @BeforeAll
+    static void innitControllersCheck() {
+        // Диагностика
+        String url = ConfigurationManager.getBaseConfig().gorestBaseUrl();
+        System.out.println("DEBUG gorest url: " + url); // если null - проблема в чтении файла
+
+        userController = new UserController(url);
+        // ...
+    }
+
+    @BeforeAll
     static void innitControllers() {
         userController = new UserController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
         postController = new PostController(ConfigurationManager.getBaseConfig().gorestBaseUrl());

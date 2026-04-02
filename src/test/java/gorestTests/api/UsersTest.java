@@ -24,9 +24,9 @@ public class UsersTest {
     CommentController commentController = new CommentController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
     ToDoController toDoController = new ToDoController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
 
-    Integer idishka = 8410066;
-    Integer newIdishka = 8410591;
-    Integer post_id = 274694;
+    Integer idishka = 8421831;
+    Integer newIdishka = 8421832;
+    Integer post_id = 275331;
 
     @Test
     void performFullCrudOperationsForUserTest() {

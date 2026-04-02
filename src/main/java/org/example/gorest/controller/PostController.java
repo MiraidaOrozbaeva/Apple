@@ -1,5 +1,6 @@
 package org.example.gorest.controller;
 
+import io.restassured.response.Response;
 import org.example.gorest.HttpRequest;
 import org.example.gorest.endPoint.EndPoint;
 import org.example.gorest.models.Post;
@@ -20,8 +21,15 @@ public class PostController extends org.example.gorest.HttpRequest {
     }
 
     public Post createUserPost(Post post, Integer id){ //    /public/v2/users/8409614/posts
-        return super.post(getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS, String.valueOf(id),
-                EndPoint.POSTS), post.toJson()).as(Post.class);
+        Response response = super.post(
+                getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS,
+                        String.valueOf(id), EndPoint.POSTS),
+                post.toJson()
+        );
+        if (response.getStatusCode() != 201) {
+            throw new RuntimeException("Failed to create post: " + response.asPrettyString());
+        }
+        return response.as(Post.class);
     }
 
     public void deletePost(Integer id){ //     /public/v2/posts/8400274

@@ -6,9 +6,19 @@ import org.example.demoqa.utils.RandomUtils;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
+
 @Tag("UI")
 public class PracticeFormTest extends BaseTest {
+
+    String picturePath = new File(Objects.requireNonNull(getClass().getClassLoader().getResource("cat.png"))
+            .toURI()).getAbsolutePath();
+
+    public PracticeFormTest() throws URISyntaxException {
+    }
 
     @Test
     void practiceFormTest1() {
@@ -33,7 +43,7 @@ public class PracticeFormTest extends BaseTest {
         practiceFormPage.fillUserFirstName("Miraida").fillUserLastName("Orozbaeva").fillUserEmail("miraida@gmail.com")
                 .selectGender("Female").fillUserNumber("0666777888").fillDateOfBirth("12 December 2002")
                 .fillOutSubjects().selectMusicAsHobbies().fillUserCurrentAddress("Bishkek")
-                .uploadPicture("/Users/miraida/IdeaProjects/Apple/src/test/resources/cat.png")
+                .uploadPicture(picturePath)
                 .selectStateAndCity("haryana").submit();
 //        Assertions compare all the displayed info with submitted one
     }

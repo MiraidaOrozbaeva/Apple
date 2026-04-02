@@ -40,6 +40,14 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation("io.github.bonigarcia:webdrivermanager:6.3.3")
 }
+// ДОБАВЬ ЭТО — копирует ресурсы из main в тестовый classpath
+sourceSets {
+    test {
+        resources {
+            srcDir("src/main/resources")
+        }
+    }
+}
 
 tasks.test {
     useJUnitPlatform()

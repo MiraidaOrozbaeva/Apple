@@ -135,8 +135,7 @@ public class WebTablesPage extends BasePage {
             boolean isExist = emp.getFirstName().equals(name);
             if (isExist){
                 WebElement edit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-                        "//div[@class= 'rt-td' and text()= '" + name + "']" +
-                                "/ancestor::div[@class='rt-tr-group']//span[starts-with(@id,'edit-record')]")));
+                        "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'edit')]")));
                 elementActions.clickBtn(edit);
             }
         }
@@ -147,8 +146,7 @@ public class WebTablesPage extends BasePage {
     public WebTablesPage removeEmployee(String name){
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
         WebElement delete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-                "//div[@class= 'rt-td' and text()= '" + name + "']" +
-                "/ancestor::div[@class='rt-tr-group']//span[starts-with(@id,'delete')]")));
+                "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'delete')]")));
         elementActions.clickBtn(delete);
 
         return this;

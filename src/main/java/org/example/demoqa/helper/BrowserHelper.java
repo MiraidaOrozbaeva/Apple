@@ -36,7 +36,7 @@ public class BrowserHelper {
 
     public void switchToWindow(int index){
         LinkedList<String> windowsId = new LinkedList<>(getWindows());
-        if (index < 0 || index > windowsId.size()){
+        if (index < 0 || index >= windowsId.size()){
             throw new IllegalArgumentException("Invalid index " + index);
         }
         driver.switchTo().window(windowsId.get(index));
