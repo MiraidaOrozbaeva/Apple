@@ -10,17 +10,20 @@ public class FileReaderUtil {
     private static Properties properties;
     static {
         try {
-            String path = "resources/App.properties";
-            FileInputStream fileInputStream = new FileInputStream(path);
             properties = new Properties();
-            properties.load(fileInputStream);
-            fileInputStream.close();
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e){
+            ClassLoader classLoader = FileReaderUtil.class.getClassLoader();
+            try (var inputStream = classLoader.getResourceAsStream("App.properties")) {
+                if (inputStream == null) {
+                    throw new FileNotFoundException("App.properties not found in classpath");
+                }
+                properties.load(inputStream);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     public static String getValue(String key){
         return properties.getProperty(key.trim());
