@@ -10,7 +10,7 @@ public class FileReaderUtil {
     private static Properties properties;
     static {
         try {
-            String path = "/Users/miraida/IdeaProjects/Apple/src/main/resources/App.properties";
+            String path = "src/main/resources/App.properties";
             FileInputStream fileInputStream = new FileInputStream(path);
             properties = new Properties();
             properties.load(fileInputStream);

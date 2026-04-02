@@ -2,7 +2,7 @@ package org.example.gorest.file;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:app.properties"})
+@Config.Sources({"classpath:App.properties"})
 public interface AppConfig extends Config {
 
     @Key("gorest.base.url")
