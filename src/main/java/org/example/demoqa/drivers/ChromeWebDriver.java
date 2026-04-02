@@ -14,7 +14,7 @@ public class ChromeWebDriver {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        options.addArguments("--headless=new");  // ← добавили
+        options.addArguments("--headless");  // ← добавили
         options.addArguments("--no-sandbox");           // ← обязательно для Jenkins/Linux
         options.addArguments("--disable-dev-shm-usage"); // ← обязательно для Jenkins/Linux
         options.addArguments("--disable-gpu");           // ← для совместимости

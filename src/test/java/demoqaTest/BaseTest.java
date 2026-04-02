@@ -9,12 +9,14 @@ import org.example.demoqa.pages.alertsFrameWindow.AlertsPage;
 import org.example.demoqa.pages.alertsFrameWindow.IframePage;
 import org.example.demoqa.pages.alertsFrameWindow.WindowPage;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
+    protected  WebDriver driver;
     protected static TextBoxPage textBoxPage;
     protected static CheckBoxPage checkBoxPage;
     protected static RadioButtonPage radioButtonPage;
@@ -33,8 +35,8 @@ public class BaseTest {
     protected static IframePage iframePage;
 
 
-    @BeforeAll
-    public static void setUpBrowser(){
+    @BeforeEach
+    public void setUpBrowser(){
         driver = DriverManager.getDriver();
         textBoxPage = new TextBoxPage();
         checkBoxPage = new CheckBoxPage();
@@ -55,8 +57,8 @@ public class BaseTest {
 
     }
 
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
