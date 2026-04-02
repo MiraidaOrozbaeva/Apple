@@ -38,17 +38,19 @@ public class EndToEndTest {
         String url = ConfigurationManager.getBaseConfig().gorestBaseUrl();
         System.out.println("DEBUG gorest url: " + url); // если null - проблема в чтении файла
 
-        userController = new UserController(url);
-        // ...
+            userController = new UserController(url);
+            postController = new PostController(url);
+            commentController = new CommentController(url);
+            toDoController = new ToDoController(url);
     }
 
-    @BeforeAll
-    static void innitControllers() {
-        userController = new UserController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-        postController = new PostController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-        commentController = new CommentController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-        toDoController = new ToDoController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-    }
+//    @BeforeAll
+//    static void innitControllers() {
+//        userController = new UserController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
+//        postController = new PostController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
+//        commentController = new CommentController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
+//        toDoController = new ToDoController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
+//    }
 
     @Test
     @DisplayName("E2E: create user → create post → create comment → create todo → delete user")
