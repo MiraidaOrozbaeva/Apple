@@ -13,7 +13,7 @@ public class ChromeWebDriver {
     public static WebDriver loadChromeDriver(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.addArguments("--headless=new");  // ← добавили
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();

@@ -28,9 +28,9 @@ dependencies {
     implementation("org.aeonbits.owner:owner:1.0.12")
     implementation("io.rest-assured:rest-assured:6.0.0")
     implementation("org.apache.logging.log4j:log4j-core:2.25.3")
-    implementation("org.slf4j:slf4j-api:2.0.17")
-    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.25.3")
     implementation("org.apache.logging.log4j:log4j-api:2.25.3")
+    // Мост: Slf4j (который использует Lombok @Slf4j) -> Log4j2
+    implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.25.3")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.21.2")
     implementation("org.postgresql:postgresql:42.7.2")
     implementation("commons-dbutils:commons-dbutils:1.8.1")
