@@ -11,10 +11,10 @@ public class CheckBoxPage extends BasePage{
     @FindBy(css = ".rct-collapse-btn")
     private WebElement collapseBtnArrow;
 
-    @FindBy(css = ".rct-option-expand-all")
+    @FindBy(xpath = ".//div[@class='rc-tree-list-holder']//span[starts-with(@class, 'rc-tree-switcher')]")
     private WebElement expandAllBtn;
 
-    @FindBy(css = ".rct-option-collapse-all")
+    @FindBy(xpath = ".//div[@class='rc-tree-list-holder']//span[starts-with(@class, 'rc-tree-switcher')]")
     private WebElement collapseAllBtn;
 
     public CheckBoxPage clickCollapseAllBtn(){

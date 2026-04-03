@@ -36,7 +36,5 @@ public class TextBoxTest extends BaseTest {
                 , "Current Address does not match");
         Assertions.assertEquals(textBoxPage.getSubmittedPermanentAddress(), userTextBox.getPermanentAddress()
                 , "Permanent Address does not match");
-
-
     }
 }

@@ -5,7 +5,6 @@ import org.example.demoqa.models.UserPracticeForm;
 import org.example.demoqa.models.UserTextBox;
 import org.example.demoqa.models.UserWebTables;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

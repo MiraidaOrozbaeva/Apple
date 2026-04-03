@@ -1,21 +1,16 @@
 package org.example.demoqa.pages;
 
-import com.github.javafaker.Faker;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.Employee;
 import org.example.demoqa.models.UserWebTables;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class WebTablesPage extends BasePage {

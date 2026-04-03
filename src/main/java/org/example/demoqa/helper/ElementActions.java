@@ -14,8 +14,7 @@ public class ElementActions {
 
     public ElementActions waitElementToBeClickable(WebElement element) {
         new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15))
-                .until(ExpectedConditions
-                        .elementToBeClickable(element));
+                .until(ExpectedConditions.elementToBeClickable(element));
         return this;
     }
 
@@ -26,8 +25,9 @@ public class ElementActions {
     }
 
     public ElementActions clickBtn(WebElement element) {
-        waitElementToBeClickable(element);
+        waitElementToBeVisible(element);
         scrollToElement(element);
+        waitElementToBeClickable(element);
         element.click();
         return this;
     }
@@ -77,21 +77,6 @@ public class ElementActions {
         action.contextClick(element).perform();
         return this;
     }
-
-//    Wait<WebDriver> wait = new FluentWait<>(DriverManager.getDriver())
-//            .withTimeout(Duration.ofSeconds(30)) // Максимальное ожидание
-//            .pollingEvery(Duration.ofSeconds(2)) // через каждые 2 сек в течении 30 сек проверка появился элемент или нет
-//            .ignoring(NoSuchElementException.class); // Игнорируемые исключения
-//
-//    // Ожидание элемента
-//    WebElement element = wait.until(new Function<WebDriver, WebElement>() {
-//        @Override
-//        public WebElement apply(WebDriver driver) {
-//            return driver.findElement(By.id("dynamicElement"));
-//        }
-//    });
-
-
 }
 
 

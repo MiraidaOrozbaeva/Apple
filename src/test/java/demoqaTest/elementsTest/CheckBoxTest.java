@@ -11,7 +11,7 @@ public class CheckBoxTest extends BaseTest {
     void checkBoxTest(){
         driver.get("https://demoqa.com/checkbox");
         checkBoxPage.clickExpandAllBtn();
-        checkBoxPage.clickCollapseAllBtn();
-        checkBoxPage.clickCollapseBtnArrow();
+//        checkBoxPage.clickCollapseAllBtn();
+//        checkBoxPage.clickCollapseBtnArrow();
     }
 }

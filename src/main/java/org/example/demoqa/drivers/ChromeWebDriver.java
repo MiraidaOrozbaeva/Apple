@@ -15,12 +15,12 @@ public class ChromeWebDriver {
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.addArguments("--headless");  // ← добавили
-        options.addArguments("--no-sandbox");           // ← обязательно для Jenkins/Linux
-        options.addArguments("--disable-dev-shm-usage"); // ← обязательно для Jenkins/Linux
-        options.addArguments("--disable-gpu");           // ← для совместимости
-        options.addArguments("--window-size=1920,1080"); // ← вместо maximize() в headless
+//        options.addArguments("--no-sandbox");           // ← обязательно для Jenkins/Linux
+//        options.addArguments("--disable-dev-shm-usage"); // ← обязательно для Jenkins/Linux
+//        options.addArguments("--disable-gpu");           // ← для совместимости
+//        options.addArguments("--window-size=1920,1080"); // ← вместо maximize() в headless
         driver = new ChromeDriver(options);
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         return driver;
     }
 }
