@@ -21,7 +21,7 @@ dependencies {
     implementation("com.codeborne:selenide:7.14.0")
 
     // Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
-    compileOnly ("org.projectlombok:lombok:1.18.38")
+    compileOnly("org.projectlombok:lombok:1.18.38")
     annotationProcessor("org.projectlombok:lombok:1.18.38")
     testCompileOnly("org.projectlombok:lombok:1.18.38")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
@@ -70,35 +70,39 @@ dependencies {
 
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    outputs.upToDateWhen { false }
 }
 
 tasks.register<Test>("uiTests") {
     useJUnitPlatform {
         includeTags("UI")
     }
-    tasks.register<Test>("apiTests") {
-        useJUnitPlatform {
-            includeTags("API")
-        }
+}
+
+tasks.register<Test>("apiTests") {
+    useJUnitPlatform {
+        includeTags("API")
     }
-    tasks.register<Test>("smokeTests") {
-        useJUnitPlatform {
-            includeTags("SMOKE")
-        }
+}
+
+tasks.register<Test>("smokeTests") {
+    useJUnitPlatform {
+        includeTags("SMOKE")
     }
-    tasks.register<Test>("regressionTests") {
-        useJUnitPlatform {
-            includeTags("REGRESSION")
-        }
+}
+
+tasks.register<Test>("regressionTests") {
+    useJUnitPlatform {
+        includeTags("REGRESSION")
     }
-    tasks.register<Test>("e2eTests") {
-        useJUnitPlatform {
-            includeTags("E2E")
-        }
+}
+
+tasks.register<Test>("e2eTests") {
+    useJUnitPlatform {
+        includeTags("E2E")
     }
-    testClassesDirs = sourceSets["test"].output.classesDirs
-    classpath = sourceSets["test"].runtimeClasspath
-    outputs.upToDateWhen { false }
 }
