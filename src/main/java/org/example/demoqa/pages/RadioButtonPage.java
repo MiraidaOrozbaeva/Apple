@@ -1,7 +1,10 @@
 package org.example.demoqa.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class RadioButtonPage extends BasePage{
 
@@ -12,12 +15,14 @@ public class RadioButtonPage extends BasePage{
     private WebElement impressiveCheckBox;
 
     public RadioButtonPage clickYesBtn(){
-        elementActions.clickBtn(yesCheckBox);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesCheckBox);
+//        elementActions.clickBtn(yesCheckBox);
         return this;
     }
 
     public RadioButtonPage clickImpressiveBtn(){
-        elementActions.clickBtn(impressiveCheckBox);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", impressiveCheckBox);
+//        elementActions.clickBtn(impressiveCheckBox);
         return this;
     }
 }

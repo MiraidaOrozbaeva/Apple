@@ -53,7 +53,8 @@ public class WebTablesPage extends BasePage {
 
 
     public WebTablesPage clickAddBtn() {
-        elementActions.clickBtn(addNewRecordBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addNewRecordBtn);
+//        elementActions.clickBtn(addNewRecordBtn);
         return this;
     }
 
@@ -88,7 +89,8 @@ public class WebTablesPage extends BasePage {
     }
 
     public WebTablesPage clickSubmitBtn() {
-        elementActions.clickBtn(submitBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+//        elementActions.clickBtn(submitBtn);
         return this;
     }
 

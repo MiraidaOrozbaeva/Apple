@@ -1,7 +1,10 @@
 package org.example.demoqa.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class CheckBoxPage extends BasePage{
 
@@ -18,17 +21,20 @@ public class CheckBoxPage extends BasePage{
     private WebElement collapseAllBtn;
 
     public CheckBoxPage clickCollapseAllBtn(){
-        elementActions.clickBtn(collapseAllBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", collapseAllBtn);
+//        elementActions.clickBtn(collapseAllBtn);
         return this;
     }
 
     public CheckBoxPage clickExpandAllBtn(){
-        elementActions.clickBtn(expandAllBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", expandAllBtn);
+//        elementActions.clickBtn(expandAllBtn);
         return this;
     }
 
     public CheckBoxPage clickCollapseBtnArrow(){
-        elementActions.clickBtn(collapseBtnArrow);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", collapseBtnArrow);
+//        elementActions.clickBtn(collapseBtnArrow);
         return this;
     }
 }

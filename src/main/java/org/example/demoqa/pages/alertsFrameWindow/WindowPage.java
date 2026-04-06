@@ -1,8 +1,11 @@
 package org.example.demoqa.pages.alertsFrameWindow;
 
 import org.example.demoqa.pages.BasePage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class WindowPage extends BasePage {
 
@@ -16,17 +19,20 @@ public class WindowPage extends BasePage {
     private WebElement messageWindowBtn;
 
     public WindowPage clickTabBtn(){
-        elementActions.clickBtn(tabBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabBtn);
+//        elementActions.clickBtn(tabBtn);
         return this;
     }
 
     public WindowPage clickWindowBtn(){
-        elementActions.clickBtn(windowBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", windowBtn);
+//        elementActions.clickBtn(windowBtn);
         return this;
     }
 
     public WindowPage clickMessageWindowBtn(){
-        elementActions.clickBtn(messageWindowBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", messageWindowBtn);
+//        elementActions.clickBtn(messageWindowBtn);
         return this;
     }
 }

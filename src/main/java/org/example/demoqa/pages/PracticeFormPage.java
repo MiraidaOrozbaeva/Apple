@@ -3,6 +3,7 @@ package org.example.demoqa.pages;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.UserPracticeForm;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.*;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class PracticeFormPage extends BasePage {
 
@@ -117,7 +120,8 @@ public class PracticeFormPage extends BasePage {
         String month = dateMonthYearParts[1];
         String year = dateMonthYearParts[2];
 
-        elementActions.clickBtn(datePickerInput);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datePickerInput);
+//        elementActions.clickBtn(datePickerInput);
 
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15));
 
@@ -135,7 +139,8 @@ public class PracticeFormPage extends BasePage {
                         "and not(contains(@class, 'react-datepicker__day--outside-month')) " +
                         "and text() = '" + date + "']")));
 
-        elementActions.clickBtn(dayElement);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dayElement);
+//        elementActions.clickBtn(dayElement);
 
         return this;
     }
@@ -177,17 +182,20 @@ public class PracticeFormPage extends BasePage {
     }
 
     public PracticeFormPage selectSportsAsHobbies() {
-        elementActions.clickBtn(hobbiesSelectSports);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectSports);
+//        elementActions.clickBtn(hobbiesSelectSports);
         return this;
     }
 
     public PracticeFormPage selectReadingAsHobbies() {
-        elementActions.clickBtn(hobbiesSelectReading);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectReading);
+//        elementActions.clickBtn(hobbiesSelectReading);
         return this;
     }
 
     public PracticeFormPage selectMusicAsHobbies() {
-        elementActions.clickBtn(hobbiesSelectMusic);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectMusic);
+//        elementActions.clickBtn(hobbiesSelectMusic);
         return this;
     }
 
@@ -230,7 +238,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public PracticeFormPage submit(){
-        elementActions.clickBtn(submitBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+//        elementActions.clickBtn(submitBtn);
         return this;
     }
 
