@@ -1,8 +1,11 @@
 package org.example.demoqa.pages.alertsFrameWindow;
 
 import org.example.demoqa.pages.BasePage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class AlertsPage extends BasePage {
 
@@ -20,22 +23,26 @@ public class AlertsPage extends BasePage {
 
 
     public AlertsPage clickAlertBtn(){
-        elementActions.clickBtn(alertBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", alertBtn);
+//        elementActions.clickBtn(alertBtn);
         return this;
     }
 
     public AlertsPage clickTimerAlertBtn(){
-        elementActions.clickBtn(timerAlertBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", timerAlertBtn);
+//        elementActions.clickBtn(timerAlertBtn);
         return this;
     }
 
     public AlertsPage clickConfirmBtn(){
-        elementActions.clickBtn(confirmBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", confirmBtn);
+//        elementActions.clickBtn(confirmBtn);
         return this;
     }
 
     public AlertsPage clickPromptBtn(){
-        elementActions.clickBtn(promtBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", promtBtn);
+//        elementActions.clickBtn(promtBtn);
         return this;
     }
 //    DEMOQA -> Elements -> Links

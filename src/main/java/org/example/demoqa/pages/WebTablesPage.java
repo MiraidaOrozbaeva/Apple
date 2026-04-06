@@ -4,6 +4,7 @@ import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.Employee;
 import org.example.demoqa.models.UserWebTables;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class WebTablesPage extends BasePage {
 
@@ -131,7 +134,8 @@ public class WebTablesPage extends BasePage {
             if (isExist){
                 WebElement edit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                         "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'edit')]")));
-                elementActions.clickBtn(edit);
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", edit);
+//                elementActions.clickBtn(edit);
             }
         }
 
@@ -142,7 +146,8 @@ public class WebTablesPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
         WebElement delete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'delete')]")));
-        elementActions.clickBtn(delete);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
+//        elementActions.clickBtn(delete);
 
         return this;
     }

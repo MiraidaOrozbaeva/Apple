@@ -3,12 +3,15 @@ package org.example.demoqa.pages;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.helper.ElementActions;
 import org.example.demoqa.models.UserTextBox;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class TextBoxPage extends BasePage {
 
@@ -84,7 +87,8 @@ public class TextBoxPage extends BasePage {
     }
 
     public TextBoxPage clickSubmit(){
-        elementActions.clickBtn(submitBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+//        elementActions.clickBtn(submitBtn);
         return this;
     }
 
