@@ -1,5 +1,6 @@
 package org.example.demoqa.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,15 +15,15 @@ public class RadioButtonPage extends BasePage{
     @FindBy(xpath = "//label[@for='impressiveRadio']")
     private WebElement impressiveCheckBox;
 
+    @Step("Click yes button")
     public RadioButtonPage clickYesBtn(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesCheckBox);
-//        elementActions.clickBtn(yesCheckBox);
         return this;
     }
 
+    @Step("Click impressive button")
     public RadioButtonPage clickImpressiveBtn(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", impressiveCheckBox);
-//        elementActions.clickBtn(impressiveCheckBox);
         return this;
     }
 }

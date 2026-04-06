@@ -1,5 +1,6 @@
 package org.example.demoqa.pages.alertsFrameWindow;
 
+import io.qameta.allure.Step;
 import org.example.demoqa.pages.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -18,21 +19,21 @@ public class WindowPage extends BasePage {
     @FindBy(id = "messageWindowButton")
     private WebElement messageWindowBtn;
 
+    @Step("Click TAB button")
     public WindowPage clickTabBtn(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", tabBtn);
-//        elementActions.clickBtn(tabBtn);
         return this;
     }
 
+    @Step("Click window button")
     public WindowPage clickWindowBtn(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", windowBtn);
-//        elementActions.clickBtn(windowBtn);
         return this;
     }
 
+    @Step("Click message window button")
     public WindowPage clickMessageWindowBtn(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", messageWindowBtn);
-//        elementActions.clickBtn(messageWindowBtn);
         return this;
     }
 }

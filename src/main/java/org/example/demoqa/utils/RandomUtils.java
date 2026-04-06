@@ -1,6 +1,7 @@
 package org.example.demoqa.utils;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 import org.example.demoqa.models.UserPracticeForm;
 import org.example.demoqa.models.UserTextBox;
 import org.example.demoqa.models.UserWebTables;
@@ -12,6 +13,7 @@ public class RandomUtils {
 
     private static Faker faker = new Faker();
 
+    @Step("Generate random data for Practice form")
     public static UserPracticeForm generatePracticeFormUser(){
         UserPracticeForm userPracticeForm = new UserPracticeForm();
         List<String> allSubjectsList = List.of("physics", "chemistry", "biology", "history", "civics",
@@ -29,6 +31,7 @@ public class RandomUtils {
         return userPracticeForm;
     }
 
+    @Step("Generate random data for Text Box")
     public static UserTextBox generateTextBoxForm(){
         UserTextBox userTextBox = new UserTextBox();
 
@@ -36,10 +39,10 @@ public class RandomUtils {
         userTextBox.setEmail(faker.internet().emailAddress());
         userTextBox.setCurrentAddress(faker.address().fullAddress());
         userTextBox.setPermanentAddress(faker.address().fullAddress());
-
         return userTextBox;
     }
 
+    @Step("Generate random data for Web Tables Add New")
     public static UserWebTables generateWebTablesAddNewRecordForm(){
         UserWebTables userWebTables = new UserWebTables();
 
@@ -49,12 +52,6 @@ public class RandomUtils {
         userWebTables.setAge(faker.number().numberBetween(18,70));
         userWebTables.setSalary(faker.number().numberBetween(500,5000));
         userWebTables.setDepartment(faker.job().position().trim().toLowerCase());
-
         return userWebTables;
     }
-
-//    public static void main(String[] args) {
-//        UserPracticeForm userPracticeForm = generatePracticeFormUser();
-//        System.out.println(userPracticeForm);
-//    }
 }

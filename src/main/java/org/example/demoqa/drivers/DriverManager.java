@@ -1,12 +1,14 @@
 package org.example.demoqa.drivers;
 
+import io.qameta.allure.Step;
 import org.example.demoqa.utils.FileReaderUtil;
 import org.openqa.selenium.WebDriver;
 
-
 public class DriverManager {
+
     private static WebDriver driver;
 
+    @Step("File Reader Util Get Value")
     public static WebDriver getDriver() {
         if (driver == null) {
             switch (FileReaderUtil.getValue("browser").toLowerCase()) {
@@ -30,6 +32,7 @@ public class DriverManager {
         return driver;
     }
 
+    @Step("Close Driver")
     public static void closeDriver(){
         try {
             if (driver != null){

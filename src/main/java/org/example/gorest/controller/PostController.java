@@ -1,5 +1,6 @@
 package org.example.gorest.controller;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.example.gorest.HttpRequest;
 import org.example.gorest.endPoint.EndPoint;
@@ -11,15 +12,18 @@ public class PostController extends org.example.gorest.HttpRequest {
         super(url);
     }
 
+    @Step("Get all users posts")
     public Post[] getAllUsersPosts(){
         return super.get(getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.POSTS)).as(Post[].class);
     }
 
+    @Step("Get user posts by id")
     public Post[] getUserPostsById(Integer id){ //    /public/v2/users/8409614/posts
         return super.get(getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS, String.valueOf(id),
                         EndPoint.POSTS)).as(Post[].class);
     }
 
+    @Step("Create user post")
     public Post createUserPost(Post post, Integer id){ //    /public/v2/users/8409614/posts
         Response response = super.post(
                 getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS,
@@ -32,6 +36,7 @@ public class PostController extends org.example.gorest.HttpRequest {
         return response.as(Post.class);
     }
 
+    @Step("Delete post")
     public void deletePost(Integer id){ //     /public/v2/posts/8400274
         super.delete(getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.POSTS, String.valueOf(id)));
     }

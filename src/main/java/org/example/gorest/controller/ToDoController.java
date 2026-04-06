@@ -1,6 +1,7 @@
 package org.example.gorest.controller;
 
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.example.gorest.HttpRequest;
 import org.example.gorest.endPoint.EndPoint;
@@ -12,11 +13,13 @@ public class ToDoController extends HttpRequest {
         super(url);
     }
 
+    @Step("Get user todos by id")
     public ToDo[] getUserToDosById(Integer id){ //    /public/v2/users/7911361/todos
         return super.get(getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS, String.valueOf(id),
                 EndPoint.TODOS)).as(ToDo[].class);
     }
 
+    @Step("Create user todo")
     public ToDo createUserToDo(ToDo toDo, Integer id){
         Response response = super.post(
                 getEndPoint(EndPoint.PUBLIC, EndPoint.V2, EndPoint.USERS,

@@ -1,5 +1,6 @@
 package org.example.gorest.file;
 
+import io.qameta.allure.Step;
 import org.example.gorest.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ public class CsvUtils {
         // utility class
     }
 
+    @Step("Write users to csv file")
     public static void writeUsersToCsv(List<User> users, String filePath) {
         createDirectories(filePath);
 
@@ -46,6 +48,7 @@ public class CsvUtils {
         }
     }
 
+    @Step("Create directories from path")
     private static void createDirectories(String filePath) {
         try {
             Files.createDirectories(Paths.get(filePath).getParent());
@@ -55,6 +58,7 @@ public class CsvUtils {
         }
     }
 
+    @Step("Read users from csv file")
     public static List<User> readUsersFromCsv(String filePath) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
@@ -81,6 +85,7 @@ public class CsvUtils {
         }
     }
 
+    @Step("Get random user from csv file")
     public static User getRandomUserFromCsv(String filePath) {
         List<User> users = readUsersFromCsv(filePath);
         int randomIndex = new Random().nextInt(users.size());

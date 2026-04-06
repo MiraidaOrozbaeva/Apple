@@ -1,8 +1,5 @@
 package org.example.demoqa.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
     private int id;
     private String name;
@@ -16,11 +13,5 @@ public class User {
         User user1 = new User(1, "Ramis");
         User user2 = new User(1, "Ramis");
         System.out.println(user1.equals(user2));
-
-
-
-
     }
-
-
 }

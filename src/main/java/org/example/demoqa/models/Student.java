@@ -11,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
+
 public class Student {
     String firstName;
     int age;
@@ -24,4 +25,3 @@ public class Student {
         System.out.println(student);
     }
 }
-

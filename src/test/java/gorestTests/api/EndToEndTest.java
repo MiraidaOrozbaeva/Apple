@@ -44,14 +44,6 @@ public class EndToEndTest {
             toDoController = new ToDoController(url);
     }
 
-//    @BeforeAll
-//    static void innitControllers() {
-//        userController = new UserController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-//        postController = new PostController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-//        commentController = new CommentController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-//        toDoController = new ToDoController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
-//    }
-
     @Test
     @DisplayName("E2E: create user → create post → create comment → create todo → delete user")
     void performFullUserWorkflowFromCreationToDeletion() {

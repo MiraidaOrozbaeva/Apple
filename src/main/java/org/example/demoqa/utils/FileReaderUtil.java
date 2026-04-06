@@ -1,5 +1,7 @@
 package org.example.demoqa.utils;
 
+import io.qameta.allure.Step;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,20 +13,6 @@ public class FileReaderUtil {
     private static Properties properties;
     static {
         properties = new Properties();
-//        try {
-//            // Загружаем через classpath, а не по относительному пути
-//            InputStream inputStream = FileReaderUtil.class
-//                    .getClassLoader()
-//                    .getResourceAsStream("App.properties");
-//            if (inputStream == null) {
-//                throw new RuntimeException("App.properties not found in classpath");
-//            }
-//            properties = new Properties();
-//            properties.load(inputStream);
-//            inputStream.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         try {
             String path = "src/test/resources/App.properties";
             FileInputStream fileInputStream = new FileInputStream(path);

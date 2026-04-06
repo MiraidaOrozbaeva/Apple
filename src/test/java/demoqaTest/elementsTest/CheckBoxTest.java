@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 public class CheckBoxTest extends BaseTest {
 
     @Test
+    @Tag("smoke")
     void checkBoxTest(){
         driver.get("https://demoqa.com/checkbox");
         checkBoxPage.clickExpandAllBtn();

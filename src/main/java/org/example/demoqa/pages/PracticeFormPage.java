@@ -1,5 +1,6 @@
 package org.example.demoqa.pages;
 
+import io.qameta.allure.Step;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.UserPracticeForm;
 import org.openqa.selenium.By;
@@ -68,29 +69,25 @@ public class PracticeFormPage extends BasePage {
     @FindBy(id = "submit")
     private WebElement submitBtn;
 
-//    div[class*='react-datepicker__day'][aria-label*='February']
-//    div.react-datepicker__day:not(.react-datepicker__day--outside-month)
-//    //div[contains(@class, 'react-datepicker__day')
-//    and not(contains(@class, 'react-datepicker__day--outside-month')) and text() = '"+day+"']
-//    //div[contains(@class, 'multi-value__label') and text()='" + subject3 + "']
-//    //div[contains(@class, '-option') and text()='Agra']
-
-
+    @Step("Fill user first name")
     public PracticeFormPage fillUserFirstName(String firstName) {
         elementActions.inputText(firstNameInput, firstName);
         return this;
     }
 
+    @Step("Fill user last name")
     public PracticeFormPage fillUserLastName(String lastName) {
         elementActions.inputText(lastNameInput, lastName);
         return this;
     }
 
+    @Step("Fill user email")
     public PracticeFormPage fillUserEmail(String email) {
         elementActions.inputText(userEmailInput, email);
         return this;
     }
 
+    @Step("Select gender")
     public PracticeFormPage selectGender(String gender) {
         switch (gender.toLowerCase().trim()) {
             case "female":
@@ -108,11 +105,13 @@ public class PracticeFormPage extends BasePage {
         return this;
     }
 
+    @Step("Fill user mobile number")
     public PracticeFormPage fillUserNumber(String number) { // 10 digits
         elementActions.inputText(userNumberInput, number);
         return this;
     }
 
+    @Step("Fill user date of birth")
     public PracticeFormPage fillDateOfBirth(String dateMonthYear) {
         String[] dateMonthYearParts = dateMonthYear.split(" ");
 
@@ -121,7 +120,6 @@ public class PracticeFormPage extends BasePage {
         String year = dateMonthYearParts[2];
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datePickerInput);
-//        elementActions.clickBtn(datePickerInput);
 
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15));
 
@@ -140,31 +138,11 @@ public class PracticeFormPage extends BasePage {
                         "and text() = '" + date + "']")));
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dayElement);
-//        elementActions.clickBtn(dayElement);
 
         return this;
     }
 
-    public PracticeFormPage fillUserSubjects(String subject) {
-        elementActions.inputText(subjectsInput, subject);
-        subjectsInput.sendKeys(Keys.TAB); // TAB лучше чем RETURN потому что таб перейдет на следующий а return может дать команду submit
-        return this;
-    }
-
-    public PracticeFormPage fillSubject(String subject1, String subject2, String subject3) {
-
-        elementActions.inputText(subjectsInput, subject1);
-        subjectsInput.sendKeys(Keys.TAB);
-
-        elementActions.inputText(subjectsInput, subject2);
-        subjectsInput.sendKeys(Keys.TAB);
-
-        elementActions.inputText(subjectsInput, subject3);
-        subjectsInput.sendKeys(Keys.TAB);
-
-        return this;
-    }
-//    через рандом выбрать нужное количество предметов из рандомного числа которе даст число в промежутке от 1 до allSubjects.size()
+    @Step("Fill user subjects filed")
     public PracticeFormPage fillOutSubjects() {
         List<String> allSubjectsList = List.of("physics", "chemistry", "biology", "history", "civics",
                 "computer science", "accounting", "social studies", "maths", "arts", "english", "economics",
@@ -181,35 +159,37 @@ public class PracticeFormPage extends BasePage {
         return this;
     }
 
+    @Step("Select sports as hobbies")
     public PracticeFormPage selectSportsAsHobbies() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectSports);
-//        elementActions.clickBtn(hobbiesSelectSports);
         return this;
     }
 
+    @Step("Select reading as hobbies")
     public PracticeFormPage selectReadingAsHobbies() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectReading);
-//        elementActions.clickBtn(hobbiesSelectReading);
         return this;
     }
 
+    @Step("Select music as hobbies")
     public PracticeFormPage selectMusicAsHobbies() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectMusic);
-//        elementActions.clickBtn(hobbiesSelectMusic);
         return this;
     }
 
+    @Step("Upload picture")
     public PracticeFormPage uploadPicture(String pictureLink) {
         elementActions.inputText(uploadPicture, pictureLink);
         return this;
     }
 
-
+    @Step("Fill user current address field")
     public PracticeFormPage fillUserCurrentAddress(String address) {
         elementActions.inputText(currentAddressInput, address);
         return this;
     }
 
+    @Step("Select state and city")
     public PracticeFormPage selectStateAndCity(String state) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(10));
 
@@ -237,13 +217,13 @@ public class PracticeFormPage extends BasePage {
         return this;
     }
 
+    @Step("Click submit button")
     public PracticeFormPage submit(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
-//        elementActions.clickBtn(submitBtn);
         return this;
     }
 
-
+    @Step("Fill out complete practice form")
     public PracticeFormPage fillPracticeForm(UserPracticeForm userPracticeForm) {
         fillUserFirstName(userPracticeForm.getFirstName())
                 .fillUserLastName(userPracticeForm.getLastName())
@@ -252,8 +232,8 @@ public class PracticeFormPage extends BasePage {
                 .fillUserNumber(userPracticeForm.getMobileNumber())
                 .fillOutSubjects()
                 .selectSportsAsHobbies()
-//                .selectReadingAsHobbies()
-//                .selectMusicAsHobbies()
+                .selectReadingAsHobbies()
+                .selectMusicAsHobbies()
                 .fillUserCurrentAddress(userPracticeForm.getCurrentAddress());
         return this;
     }

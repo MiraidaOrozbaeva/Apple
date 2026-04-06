@@ -1,8 +1,10 @@
 package org.example.demoqa.pages;
 
+import io.qameta.allure.Step;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.Employee;
 import org.example.demoqa.models.UserWebTables;
+import org.example.demoqa.utils.RandomUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -45,55 +47,58 @@ public class WebTablesPage extends BasePage {
     @FindBy(id = "submit")
     private WebElement submitBtn;
 
-//    @FindBy(xpath = "//div[text()='Cierra']")
-//    private WebElement searchByName;
-
     @FindBy(css = "tbody tr")
     private List<WebElement> rowsList;
 
-
+    @Step("Click add button")
     public WebTablesPage clickAddBtn() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addNewRecordBtn);
-//        elementActions.clickBtn(addNewRecordBtn);
         return this;
     }
 
+    @Step("Fill first name field")
     public WebTablesPage fillFirstName(String firstName) {
         elementActions.inputText(firstNameInput, firstName);
         return this;
     }
 
+    @Step("Fill last name field")
     public WebTablesPage fillLastName(String lastName) {
         elementActions.inputText(lastNameInput, lastName);
         return this;
     }
 
+    @Step("Fill email field")
     public WebTablesPage fillEmail(String email) {
         elementActions.inputText(userEmailInput, email);
         return this;
     }
 
+    @Step("Fill age field")
     public WebTablesPage fillAge(Integer age) {
         elementActions.inputText(ageInput, age.toString());
         return this;
     }
 
+    @Step("Fill salary field")
     public WebTablesPage fillSalary(Integer salary) {
         elementActions.inputText(salaryInput, salary.toString());
         return this;
     }
 
+    @Step("Fill department field")
     public WebTablesPage fillDepartment(String department) {
         elementActions.inputText(departmentInput, department);
         return this;
     }
 
+    @Step("Click submit button")
     public WebTablesPage clickSubmitBtn() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
-//        elementActions.clickBtn(submitBtn);
         return this;
     }
 
+    @Step("Fill in Registration form")
     public WebTablesPage fillAddNewRecords(UserWebTables userWebTables) {
         fillFirstName(userWebTables.getFirstName())
                 .fillLastName(userWebTables.getLastName())
@@ -102,9 +107,9 @@ public class WebTablesPage extends BasePage {
                 .fillSalary(userWebTables.getSalary())
                 .fillDepartment(userWebTables.getDepartment());
         return this;
-
     }
 
+    @Step("Add new employee")
     public WebTablesPage addNewEmployee(Employee employee) {
         boolean isExist = getEmployeesFromTable().contains(employee);
 
@@ -120,15 +125,16 @@ public class WebTablesPage extends BasePage {
         } else{
             throw new IllegalArgumentException("Employee is exist");
         }
-
         return this;
     }
 
+    @Step("Clear and type")
     public void clearAndType(WebElement element, String value){
         element.clear();
         element.sendKeys(value);
     }
 
+    @Step("Edit employee and update")
     public WebTablesPage editEmployee(String name, Employee updatedEmployeeInfo){
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
         for (Employee emp : getEmployeesFromTable()){
@@ -137,24 +143,21 @@ public class WebTablesPage extends BasePage {
                 WebElement edit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                         "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'edit')]")));
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", edit);
-//                elementActions.clickBtn(edit);
             }
         }
-
         return this;
     }
 
+    @Step("Remove employee")
     public WebTablesPage removeEmployee(String name){
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
         WebElement delete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'delete')]")));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
-//        elementActions.clickBtn(delete);
-
         return this;
     }
-//    метод -> обновления существующего сотрудника
 
+    @Step("Get list of employees")
     public ArrayList<Employee> getEmployeesFromTable() {
         ArrayList<Employee> employees = new ArrayList<>();
         for (WebElement row : rowsList) {

@@ -1,5 +1,6 @@
 package org.example.demoqa.pages;
 
+import io.qameta.allure.Step;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.helper.ElementActions;
 import org.example.demoqa.models.UserTextBox;
@@ -45,58 +46,65 @@ public class TextBoxPage extends BasePage {
     @FindBy(css = "p#permanentAddress")
     private WebElement displayedPermanentAddress;
 
+    @Step("Get submitted name")
     public String getSubmittedName(){
         elementActions.waitElementToBeVisible(displayedName).scrollToElement(displayedName);
         return displayedName.getText().replace("Name:", "").trim();
     }
 
+    @Step("Get submitted email")
     public String getSubmittedEmail(){
         elementActions.waitElementToBeVisible(displayedEmail).scrollToElement(displayedEmail);
         return displayedEmail.getText().replace("Email:", "").trim();
     }
 
+    @Step("Get submitted current address")
     public String getSubmittedCurrentAddress(){
         elementActions.waitElementToBeVisible(displayedCurrentAddress).scrollToElement(displayedCurrentAddress);
         return displayedCurrentAddress.getText().replace("Current Address :", "").trim();
     }
 
+    @Step("Get submitted permanent address")
     public String getSubmittedPermanentAddress(){
         elementActions.waitElementToBeVisible(displayedPermanentAddress).scrollToElement(displayedPermanentAddress);
         return displayedPermanentAddress.getText().replace("Permananet Address :", "").trim();
     }
 
-
+    @Step("Fill user name")
     public TextBoxPage fillUserName(String userName){
         elementActions.inputText(userNameInput, userName);
         return this;
     }
 
+    @Step("Fill user email")
     public TextBoxPage fillUserEmail(String userEmail){
         elementActions.inputText(userEmailInput, userEmail);
         return this;
     }
 
+    @Step("Fill current address")
     public TextBoxPage fillCurrentAddress(String currentAddress){
         elementActions.inputText(currentAddressInput, currentAddress);
         return this;
     }
 
+    @Step("Fill permanent address")
     public TextBoxPage fillPermanentAddress(String permanentAddress){
         elementActions.inputText(permanentAddressInput, permanentAddress);
         return this;
     }
 
+    @Step("Click submit button")
     public TextBoxPage clickSubmit(){
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
-//        elementActions.clickBtn(submitBtn);
         return this;
     }
 
+    @Step("Fill out complete text box form")
     public TextBoxPage fiilUpTextBoxForm(UserTextBox userTextBox){
         fillUserName(userTextBox.getName()).fillUserEmail(userTextBox.getEmail())
                 .fillCurrentAddress(userTextBox.getCurrentAddress())
                 .fillPermanentAddress(userTextBox.getPermanentAddress()).clickSubmit();
-
         return this;
     }
 }

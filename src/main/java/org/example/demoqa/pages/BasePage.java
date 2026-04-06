@@ -11,7 +11,4 @@ public abstract class BasePage {
     public BasePage () {
         PageFactory.initElements(DriverManager.getDriver(), this);
     }
-
-
-
 }

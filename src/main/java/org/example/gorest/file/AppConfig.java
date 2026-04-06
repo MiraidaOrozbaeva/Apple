@@ -19,6 +19,4 @@ public interface AppConfig extends Config {
 
     @Key("user")
     String user();
-
-
 }
