@@ -7,20 +7,24 @@ import org.openqa.selenium.WebDriver;
 public class DriverManager {
     private static WebDriver driver;
 
-    public static WebDriver getDriver(){
-        if (driver != null){
-            return driver;
-        }
-        switch (FileReaderUtil.getValue("browser").toLowerCase()){
-            case "chrome" : driver = ChromeWebDriver.loadChromeDriver();
-                break;
-            case "edge" : driver = EdgeWebDriver.loadEdgeWebDriver();
-                break;
-            case "safari" : driver = SafariWebDriver.loadSafariWebDriver();
-                break;
-            case "firefox" : driver = FireFoxWebDriver.loadFirefoxWebDriver();
-                break;
-            default: throw new IllegalArgumentException("Wrong driver name");
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            switch (FileReaderUtil.getValue("browser").toLowerCase()) {
+                case "chrome":
+                    driver = ChromeWebDriver.loadChromeDriver();
+                    break;
+                case "edge":
+                    driver = EdgeWebDriver.loadEdgeWebDriver();
+                    break;
+                case "safari":
+                    driver = SafariWebDriver.loadSafariWebDriver();
+                    break;
+                case "firefox":
+                    driver = FireFoxWebDriver.loadFirefoxWebDriver();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Wrong driver name");
+            }
         }
         return driver;
     }
