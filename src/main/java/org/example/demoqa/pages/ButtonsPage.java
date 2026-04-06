@@ -24,5 +24,4 @@ public class ButtonsPage extends BasePage {
         elementActions.rightClick(rightClickBtn);
         return this;
     }
-
 }

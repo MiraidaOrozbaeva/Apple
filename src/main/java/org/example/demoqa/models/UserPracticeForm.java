@@ -14,6 +14,7 @@ import java.util.List;
 @EqualsAndHashCode
 //@Data
 @FieldDefaults(level = AccessLevel.PRIVATE) // делает все поля приватными
+
 public class UserPracticeForm {
      String firstName;
      String lastName;

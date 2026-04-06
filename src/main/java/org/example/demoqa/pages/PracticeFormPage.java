@@ -248,6 +248,4 @@ public class PracticeFormPage extends BasePage {
                 .fillUserCurrentAddress(userPracticeForm.getCurrentAddress());
         return this;
     }
-
-
 }

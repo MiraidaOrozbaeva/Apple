@@ -30,7 +30,7 @@ public class EndToEndTest {
     protected static PostController postController;
     protected static CommentController commentController;
     protected static ToDoController toDoController;
-    private static final String CSV_PATH = "src/main/resources/users_data.csv";
+    private static final String CSV_PATH = "src/test/resources/users_data.csv";
 
     @BeforeAll
     static void innitControllersCheck() {

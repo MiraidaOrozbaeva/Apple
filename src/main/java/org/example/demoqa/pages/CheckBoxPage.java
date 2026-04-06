@@ -31,7 +31,4 @@ public class CheckBoxPage extends BasePage{
         elementActions.clickBtn(collapseBtnArrow);
         return this;
     }
-
-
-
 }

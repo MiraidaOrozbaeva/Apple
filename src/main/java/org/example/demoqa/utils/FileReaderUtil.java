@@ -26,7 +26,7 @@ public class FileReaderUtil {
 //            e.printStackTrace();
 //        }
         try {
-            String path = "resources/App.properties";
+            String path = "src/test/resources/App.properties";
             FileInputStream fileInputStream = new FileInputStream(path);
             properties.load(fileInputStream);
             fileInputStream.close();

@@ -95,5 +95,4 @@ public class TextBoxPage extends BasePage {
 
         return this;
     }
-
 }
