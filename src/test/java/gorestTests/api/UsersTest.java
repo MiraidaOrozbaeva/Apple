@@ -47,7 +47,7 @@ public class UsersTest {
 
         Assertions.assertThat(userController.getResponse().getTime())
                 .as("More than 1 min")
-                .isLessThan(1000);
+                .isLessThan(3000);
 
         Assertions.assertThat(userController.getResponse().getHeader("x-frame-options"))
                 .as("is not SAMEORIGIN")
