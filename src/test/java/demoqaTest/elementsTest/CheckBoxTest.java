@@ -2,13 +2,15 @@ package demoqaTest.elementsTest;
 
 import demoqaTest.BaseTest;
 import org.example.demoqa.pages.CheckBoxPage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 @Tag("UI")
 public class CheckBoxTest extends BaseTest {
 
     @Test
-    @Tag("smoke")
+    @Tag("SMOKE")
+    @DisplayName("Click expand all button")
     void checkBoxTest(){
         driver.get("https://demoqa.com/checkbox");
         checkBoxPage.clickExpandAllBtn();

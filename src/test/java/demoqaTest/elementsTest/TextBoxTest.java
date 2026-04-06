@@ -4,6 +4,7 @@ import demoqaTest.BaseTest;
 import org.example.demoqa.models.UserTextBox;
 import org.example.demoqa.utils.RandomUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 @Tag("UI")
@@ -11,6 +12,8 @@ public class TextBoxTest extends BaseTest {
 
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Fill up text box form with created user details")
     void textBoxTest(){
         UserTextBox userTextBox = new UserTextBox("Miraida", "miraida@gmail.com",
                 "Bishkek city", "Kyrgyzstan");
@@ -23,6 +26,8 @@ public class TextBoxTest extends BaseTest {
     }
 
     @Test
+    @Tag("REGRESSION")
+    @DisplayName("Fill up text box form with user's random generated details; assert submitted with displayed data")
     void textBoxCompareDisplayedInfoTest(){
         UserTextBox userTextBox = RandomUtils.generateTextBoxForm();
         driver.get("https://demoqa.com/text-box");

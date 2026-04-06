@@ -2,6 +2,7 @@ package demoqaTest.elementsTest;
 
 import demoqaTest.BaseTest;
 import org.example.demoqa.models.Employee;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,8 @@ public class WebTablesTest extends BaseTest {
 
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Get list of all employees")
     void webTablesTest(){
         driver.get("https://demoqa.com/webtables");
 //        webTablesPage.clickAddBtn();
@@ -26,6 +29,8 @@ public class WebTablesTest extends BaseTest {
     }
 
     @Test
+    @Tag("REGRESSION")
+    @DisplayName("Add new employee with created employee details")
     void addNewEmployeeTest(){
         browserHelper.open("https://demoqa.com/webtables");
 
@@ -36,6 +41,8 @@ public class WebTablesTest extends BaseTest {
     }
 
     @Test
+    @Tag("REGRESSION")
+    @DisplayName("Edit existed employee details, change first name")
     void editTest(){
         browserHelper.open("https://demoqa.com/webtables");
 
@@ -46,6 +53,8 @@ public class WebTablesTest extends BaseTest {
     }
 
     @Test
+    @Tag("REGRESSION")
+    @DisplayName("Remove employee")
     void removeTest(){
         browserHelper.open("https://demoqa.com/webtables");
 

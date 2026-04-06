@@ -3,6 +3,7 @@ package demoqaTest.formsTest;
 import demoqaTest.BaseTest;
 import org.example.demoqa.models.UserPracticeForm;
 import org.example.demoqa.utils.RandomUtils;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,8 @@ public class PracticeFormTest extends BaseTest {
     }
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Fill out practice form with random generated data")
     void practiceFormTest1() {
         UserPracticeForm userPracticeForm = RandomUtils.generatePracticeFormUser();
         driver.get("https://demoqa.com/automation-practice-form");
@@ -28,6 +31,8 @@ public class PracticeFormTest extends BaseTest {
     }
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Fill out practice form with data by creating object")
     void practiceFormTest2() {
         UserPracticeForm userPracticeForm = new UserPracticeForm("Miraida", "Orozbaeva",
                 "orozbaeva@gmail.com", "Female", "0552233988", "16 Apr 1994",
@@ -38,6 +43,8 @@ public class PracticeFormTest extends BaseTest {
     }
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Fill out practice form with data by entering data into method")
     void practiceFormTest3(){
         driver.get("https://demoqa.com/automation-practice-form");
         practiceFormPage.fillUserFirstName("Miraida").fillUserLastName("Orozbaeva").fillUserEmail("miraida@gmail.com")
@@ -47,5 +54,4 @@ public class PracticeFormTest extends BaseTest {
                 .selectStateAndCity("haryana").submit();
 //        Assertions compare all the displayed info with submitted one
     }
-
 }

@@ -1,6 +1,7 @@
 package demoqaTest.alertFrameWindow;
 
 import demoqaTest.BaseTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,8 @@ import org.junit.jupiter.api.Test;
 public class AlertsPageTest extends BaseTest {
 
     @Test
-    @Tag("smoke")
+    @Tag("SMOKE")
+    @DisplayName("Click alert button -> accept; click confirm button -> dismiss; click prompt button -> send text")
     void alertsTest() {
         driver.get("https://demoqa.com/alerts");
         alertsPage.clickAlertBtn();

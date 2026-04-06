@@ -71,6 +71,7 @@ public class UsersTest {
     }
 
     @Test
+    @Tag("SMOKE")
     void postTest() {
         System.out.println("GET ALL USER'S POSTS: " + Arrays.toString(postController.getAllUsersPosts()));
 
@@ -84,6 +85,7 @@ public class UsersTest {
     }
 
     @Test
+    @Tag("SMOKE")
     void commentTest() {
         System.out.println("GET USER'S COMMENTS BY ID: " + Arrays.toString(commentController
                 .getUserCommentsById(newIdishka)));
@@ -95,6 +97,7 @@ public class UsersTest {
     }
 
     @Test
+    @Tag("SMOKE")
     void toDoTest() {
         System.out.println("GET USER'S TODOS BY ID: " + Arrays.toString(toDoController.getUserToDosById(newIdishka)));
 

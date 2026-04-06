@@ -45,6 +45,7 @@ public class EndToEndTest {
     }
 
     @Test
+    @Tag("E2E")
     @DisplayName("E2E: create user → create post → create comment → create todo → delete user")
     void performFullUserWorkflowFromCreationToDeletion() {
 
@@ -71,12 +72,16 @@ public class EndToEndTest {
     }
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Export all users to csv file")
     void exportAllUsersToCsv() {
         List<User> users = Arrays.asList(userController.getAllUsers());
         CsvUtils.writeUsersToCsv(users, CSV_PATH);
     }
 
     @Test
+    @Tag("REGRESSION")
+    @DisplayName("Get random user data assert with response body")
     void getRandomUserFromCsv() {
         // взять рандомного пользователя целиком
         User randomUser = CsvUtils.getRandomUserFromCsv(CSV_PATH);
@@ -89,6 +94,8 @@ public class EndToEndTest {
     }
 
     @Test
+    @Tag("SMOKE")
+    @DisplayName("Get all ids and choose one randomly")
     void getAllUsersFromCsvAndPickRandom() {
         // взять всех и поработать со списком
         List<User> users = CsvUtils.readUsersFromCsv(CSV_PATH);

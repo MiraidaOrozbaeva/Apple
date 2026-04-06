@@ -74,9 +74,29 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.register<Test>("uiAndApiTest") {
+tasks.register<Test>("uiTests") {
     useJUnitPlatform {
-        includeTags("UI | API")
+        includeTags("UI")
+    }
+    tasks.register<Test>("apiTests") {
+        useJUnitPlatform {
+            includeTags("API")
+        }
+    }
+    tasks.register<Test>("smokeTests") {
+        useJUnitPlatform {
+            includeTags("SMOKE")
+        }
+    }
+    tasks.register<Test>("regressionTests") {
+        useJUnitPlatform {
+            includeTags("REGRESSION")
+        }
+    }
+    tasks.register<Test>("e2eTests") {
+        useJUnitPlatform {
+            includeTags("E2E")
+        }
     }
     testClassesDirs = sourceSets["test"].output.classesDirs
     classpath = sourceSets["test"].runtimeClasspath
