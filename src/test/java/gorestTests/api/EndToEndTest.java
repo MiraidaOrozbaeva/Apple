@@ -54,7 +54,7 @@ public class EndToEndTest {
 
     @Test
     @DisplayName("E2E: create user → create post → create comment → create todo → delete user")
-    void shouldPerformFullUserWorkflowFromCreationToDeletion() {
+    void performFullUserWorkflowFromCreationToDeletion() {
 
         User user = RandomDataGenerator.createRandomUser();
         User createdUser = userController.createNewUser(user);
@@ -85,7 +85,7 @@ public class EndToEndTest {
     }
 
     @Test
-    void shouldGetRandomUserFromCsv() {
+    void getRandomUserFromCsv() {
         // взять рандомного пользователя целиком
         User randomUser = CsvUtils.getRandomUserFromCsv(CSV_PATH);
         Integer randomId = randomUser.getId();
@@ -97,7 +97,7 @@ public class EndToEndTest {
     }
 
     @Test
-    void shouldGetAllUsersFromCsvAndPickRandom() {
+    void getAllUsersFromCsvAndPickRandom() {
         // взять всех и поработать со списком
         List<User> users = CsvUtils.readUsersFromCsv(CSV_PATH);
 
