@@ -77,6 +77,12 @@ tasks.withType<Test> {
     outputs.upToDateWhen { false }
 }
 
+tasks.register<Test>("allTests") {
+    useJUnitPlatform {
+        includeTags("UI | API | SMOKE | REGRESSION | E2E")
+    }
+}
+
 tasks.register<Test>("uiTests") {
     useJUnitPlatform {
         includeTags("UI")
