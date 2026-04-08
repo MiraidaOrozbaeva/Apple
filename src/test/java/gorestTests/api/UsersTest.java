@@ -6,7 +6,7 @@ import org.example.gorest.controller.CommentController;
 import org.example.gorest.controller.PostController;
 import org.example.gorest.controller.ToDoController;
 import org.example.gorest.controller.UserController;
-import org.example.gorest.file.ConfigurationManager;
+import org.example.utils.file.ConfigurationManager;
 import org.example.gorest.models.Comment;
 import org.example.gorest.models.Post;
 import org.example.gorest.models.ToDo;

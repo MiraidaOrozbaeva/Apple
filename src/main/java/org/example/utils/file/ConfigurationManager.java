@@ -1,4 +1,4 @@
-package org.example.gorest.file;
+package org.example.utils.file;
 
 import org.aeonbits.owner.ConfigCache;
 

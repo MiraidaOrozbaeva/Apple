@@ -1,4 +1,4 @@
-package org.example.gorest.file;
+package org.example.utils.file;
 
 import io.qameta.allure.Step;
 import org.example.gorest.models.User;
