@@ -1,9 +1,9 @@
 package org.example.db.beans;
 
-import kg.example.db.db_utils.DB_Connection;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
+import org.example.db.db_utils.DB_Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,8 +72,7 @@ public class Address {
                 address1.getDistrict(),
                 address1.getCity_id(),
                 address1.getPostal_code(),
-                address1.getPhone(),
-                address1.getLast_update())){
+                address1.getPhone())){
 
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;

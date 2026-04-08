@@ -1,425 +1,149 @@
-[2026-04-02] 11:10:38:222 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:10:38:229 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:10:45:928 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:10:45:930 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:10:52:552 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:10:52:554 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:10:59:028 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:10:59:029 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:11:05:724 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:11:05:727 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:11:41:807 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:11:41:811 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:11:48:290 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:11:48:292 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:11:57:409 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:11:57:411 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:12:10:825 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 11:12:10:827 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 11:12:20:388 CsvUtils: 75 [INFO] - CSV file successfully read: src/main/resources/users_data.csv, total users: 10
-[2026-04-02] 11:12:20:388 EndToEndTest: 101 [INFO] - All ids: [8410828, 8410826, 8410759, 8410755, 8410754, 8410748, 8410739, 8410719, 8410664, 8410591]
-[2026-04-02] 11:12:20:389 EndToEndTest: 102 [INFO] - Random id picked: 8410828
-[2026-04-02] 11:12:20:448 HttpRequest: 38 [INFO] - Performed POST public/v2/users
-[2026-04-02] 11:12:20:448 HttpRequest: 39 [INFO] - Body is {"name":"Hunter McGlynn","email":"kimberlee.rohan@yahoo.com","gender":"female","status":"active"}
-[2026-04-02] 11:12:21:639 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:21:656 HttpRequest: 70 [WARN] - {
-    "id": 8421432,
-    "name": "Hunter McGlynn",
-    "email": "kimberlee.rohan@yahoo.com",
+[2026-04-08] 18:00:55:890 HttpRequest: 31 [INFO] - Performed GET public/v2/users
+[2026-04-08] 18:00:58:117 HttpRequest: 69 [WARN] - Response is: 
+[2026-04-08] 18:00:58:140 HttpRequest: 70 [WARN] - [
+    {
+        "id": 8428394,
+        "name": "Brianne Berge",
+        "email": "wilford.kshlerin@yahoo.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8428393,
+        "name": "Britt Murphy",
+        "email": "mitchell.pacocha@yahoo.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8427373,
+        "name": "Augustina Rohan",
+        "email": "claretha.blick@yahoo.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8427116,
+        "name": "Bobbie Goyette",
+        "email": "armand.leffler@gmail.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8427115,
+        "name": "Brooke Morissette",
+        "email": "bernardo.hackett@yahoo.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8426886,
+        "name": "Hung Rau",
+        "email": "eric.veum@gmail.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8426883,
+        "name": "Olin Fay",
+        "email": "tyrone.buckridge@gmail.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8426628,
+        "name": "Kristine Bergnaum",
+        "email": "siobhan.lind@hotmail.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8426626,
+        "name": "Cleo Roob",
+        "email": "tomas.ferry@hotmail.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "id": 8426587,
+        "name": "Margene Wolf",
+        "email": "thaddeus.will@yahoo.com",
+        "gender": "female",
+        "status": "active"
+    }
+]
+[2026-04-08] 18:00:58:143 HttpRequest: 71 [WARN] - Status code is: 200
+[2026-04-08] 18:00:58:203 CsvUtils: 57 [INFO] - CSV file successfully created: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:01:08:713 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:11:08:572 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:13:33:073 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:14:12:065 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:14:12:070 EndToEndTest: 129 [INFO] - All users: [User(id=8428394, name=Brianne Berge, email=wilford.kshlerin@yahoo.com, gender=female, status=active), User(id=8428393, name=Britt Murphy, email=mitchell.pacocha@yahoo.com, gender=female, status=active), User(id=8427373, name=Augustina Rohan, email=claretha.blick@yahoo.com, gender=female, status=active), User(id=8427116, name=Bobbie Goyette, email=armand.leffler@gmail.com, gender=female, status=active), User(id=8427115, name=Brooke Morissette, email=bernardo.hackett@yahoo.com, gender=female, status=active), User(id=8426886, name=Hung Rau, email=eric.veum@gmail.com, gender=female, status=active), User(id=8426883, name=Olin Fay, email=tyrone.buckridge@gmail.com, gender=female, status=active), User(id=8426628, name=Kristine Bergnaum, email=siobhan.lind@hotmail.com, gender=female, status=active), User(id=8426626, name=Cleo Roob, email=tomas.ferry@hotmail.com, gender=female, status=active), User(id=8426587, name=Margene Wolf, email=thaddeus.will@yahoo.com, gender=female, status=active)]
+[2026-04-08] 18:14:12:070 EndToEndTest: 130 [INFO] - All ids: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:14:12:070 EndToEndTest: 131 [INFO] - All emails: [wilford.kshlerin@yahoo.com, mitchell.pacocha@yahoo.com, claretha.blick@yahoo.com, armand.leffler@gmail.com, bernardo.hackett@yahoo.com, eric.veum@gmail.com, tyrone.buckridge@gmail.com, siobhan.lind@hotmail.com, tomas.ferry@hotmail.com, thaddeus.will@yahoo.com]
+[2026-04-08] 18:14:12:070 EndToEndTest: 132 [INFO] - Random user picked: User(id=8427115, name=Brooke Morissette, email=bernardo.hackett@yahoo.com, gender=female, status=active)
+[2026-04-08] 18:15:18:647 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:15:18:650 EndToEndTest: 126 [INFO] - All users: [User(id=8428394, name=Brianne Berge, email=wilford.kshlerin@yahoo.com, gender=female, status=active), User(id=8428393, name=Britt Murphy, email=mitchell.pacocha@yahoo.com, gender=female, status=active), User(id=8427373, name=Augustina Rohan, email=claretha.blick@yahoo.com, gender=female, status=active), User(id=8427116, name=Bobbie Goyette, email=armand.leffler@gmail.com, gender=female, status=active), User(id=8427115, name=Brooke Morissette, email=bernardo.hackett@yahoo.com, gender=female, status=active), User(id=8426886, name=Hung Rau, email=eric.veum@gmail.com, gender=female, status=active), User(id=8426883, name=Olin Fay, email=tyrone.buckridge@gmail.com, gender=female, status=active), User(id=8426628, name=Kristine Bergnaum, email=siobhan.lind@hotmail.com, gender=female, status=active), User(id=8426626, name=Cleo Roob, email=tomas.ferry@hotmail.com, gender=female, status=active), User(id=8426587, name=Margene Wolf, email=thaddeus.will@yahoo.com, gender=female, status=active)]
+[2026-04-08] 18:15:18:650 EndToEndTest: 127 [INFO] - All ids: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:15:18:650 EndToEndTest: 128 [INFO] - All emails: [wilford.kshlerin@yahoo.com, mitchell.pacocha@yahoo.com, claretha.blick@yahoo.com, armand.leffler@gmail.com, bernardo.hackett@yahoo.com, eric.veum@gmail.com, tyrone.buckridge@gmail.com, siobhan.lind@hotmail.com, tomas.ferry@hotmail.com, thaddeus.will@yahoo.com]
+[2026-04-08] 18:15:18:651 EndToEndTest: 129 [INFO] - Random user picked: User(id=8426886, name=Hung Rau, email=eric.veum@gmail.com, gender=female, status=active)
+[2026-04-08] 18:15:31:006 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:15:31:007 CsvUtils: 130 [INFO] - Random row selected: {id=8428394, name=Brianne Berge, email=wilford.kshlerin@yahoo.com, gender=female, status=active}
+[2026-04-08] 18:15:31:007 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:15:31:007 CsvUtils: 108 [INFO] - Column 'id' extracted | values: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:15:31:007 CsvUtils: 119 [INFO] - Random value from column 'id': 8428394
+[2026-04-08] 18:15:31:007 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8428394
+[2026-04-08] 18:15:32:945 HttpRequest: 69 [WARN] - Response is: 
+[2026-04-08] 18:15:32:967 HttpRequest: 70 [WARN] - {
+    "id": 8428394,
+    "name": "Brianne Berge",
+    "email": "wilford.kshlerin@yahoo.com",
     "gender": "female",
     "status": "active"
 }
-[2026-04-02] 11:12:21:657 HttpRequest: 71 [WARN] - Status code is: 201
-[2026-04-02] 11:12:21:677 HttpRequest: 38 [INFO] - Performed POST public/v2/users/8421432/posts
-[2026-04-02] 11:12:21:678 HttpRequest: 39 [INFO] - Body is {"title":"Harry Potter and the Half-Blood Prince","body":"If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals."}
-[2026-04-02] 11:12:22:060 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:22:064 HttpRequest: 70 [WARN] - {
-    "id": 275275,
-    "user_id": 8421432,
-    "title": "Harry Potter and the Half-Blood Prince",
-    "body": "If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals."
-}
-[2026-04-02] 11:12:22:065 HttpRequest: 71 [WARN] - Status code is: 201
-[2026-04-02] 11:12:22:072 HttpRequest: 38 [INFO] - Performed POST public/v2/posts/275275/comments
-[2026-04-02] 11:12:22:073 HttpRequest: 39 [INFO] - Body is {"name":"Hunter McGlynn","email":"kimberlee.rohan@yahoo.com","body":"We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are."}
-[2026-04-02] 11:12:22:484 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:22:486 HttpRequest: 70 [WARN] - {
-    "id": 185891,
-    "post_id": 275275,
-    "name": "Hunter McGlynn",
-    "email": "kimberlee.rohan@yahoo.com",
-    "body": "We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are."
-}
-[2026-04-02] 11:12:22:487 HttpRequest: 71 [WARN] - Status code is: 201
-[2026-04-02] 11:12:22:493 HttpRequest: 38 [INFO] - Performed POST public/v2/users/8421432/todos
-[2026-04-02] 11:12:22:494 HttpRequest: 39 [INFO] - Body is {"title":"Harry Potter and the Prisoner of Azkaban","due_on":"10:00 am","status":"pending"}
-[2026-04-02] 11:12:23:337 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:23:339 HttpRequest: 70 [WARN] - {
-    "id": 101650,
-    "user_id": 8421432,
-    "title": "Harry Potter and the Prisoner of Azkaban",
-    "due_on": "2026-04-02T10:00:00.000+05:30",
-    "status": "pending"
-}
-[2026-04-02] 11:12:23:340 HttpRequest: 71 [WARN] - Status code is: 201
-[2026-04-02] 11:12:23:350 CsvUtils: 75 [INFO] - CSV file successfully read: src/main/resources/users_data.csv, total users: 10
-[2026-04-02] 11:12:23:353 CsvUtils: 88 [INFO] - Random user selected: User(id=8410755, name=Tony Stamm II, email=rrrrraa@gmail.com, gender=female, status=active)
-[2026-04-02] 11:12:23:353 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8410755
-[2026-04-02] 11:12:23:706 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:23:708 HttpRequest: 70 [WARN] - {
-    "message": "Resource not found"
-}
-[2026-04-02] 11:12:23:708 HttpRequest: 71 [WARN] - Status code is: 404
-[2026-04-02] 11:12:23:723 HttpRequest: 31 [INFO] - Performed GET public/v2/users
-[2026-04-02] 11:12:24:095 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:24:100 HttpRequest: 70 [WARN] - [
-    {
-        "id": 8421432,
-        "name": "Hunter McGlynn",
-        "email": "kimberlee.rohan@yahoo.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421429,
-        "name": "Miss Roselle Crist",
-        "email": "dudley.auer@yahoo.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421424,
-        "name": "Mike Homenick",
-        "email": "jan.smith@gmail.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421372,
-        "name": "Thurman Kihn",
-        "email": "gertrudis.wintheiser@hotmail.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417999,
-        "name": "Bhaumik Pothuvaal",
-        "email": "pothuvaal_bhaumik@runolfsdottir-altenwerth.test",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417996,
-        "name": "Agasti Asan IV",
-        "email": "agasti_asan_iv@breitenberg-fisher.example",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417994,
-        "name": "The Hon. Chiranjeev Pilla",
-        "email": "pilla_chiranjeev_the_hon@mosciski.example",
-        "gender": "male",
-        "status": "active"
-    },
-    {
-        "id": 8417054,
-        "name": "Mrs. Deeptimoy Embranthiri",
-        "email": "deeptimoy_embranthiri_mrs@lueilwitz.example",
-        "gender": "female",
-        "status": "inactive"
-    },
-    {
-        "id": 8417053,
-        "name": "Gaurang Agarwal",
-        "email": "gaurang_agarwal@buckridge.test",
-        "gender": "male",
-        "status": "active"
-    },
-    {
-        "id": 8417052,
-        "name": "Trilokanath Nehru",
-        "email": "nehru_trilokanath@weimann.test",
-        "gender": "male",
-        "status": "active"
-    }
-]
-[2026-04-02] 11:12:24:102 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:24:113 CsvUtils: 41 [INFO] - CSV file successfully created: src/main/resources/users_data.csv
-[2026-04-02] 11:12:24:121 HttpRequest: 31 [INFO] - Performed GET public/v2/users
-[2026-04-02] 11:12:24:485 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:24:489 HttpRequest: 70 [WARN] - [
-    {
-        "id": 8421432,
-        "name": "Hunter McGlynn",
-        "email": "kimberlee.rohan@yahoo.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421429,
-        "name": "Miss Roselle Crist",
-        "email": "dudley.auer@yahoo.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421424,
-        "name": "Mike Homenick",
-        "email": "jan.smith@gmail.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8421372,
-        "name": "Thurman Kihn",
-        "email": "gertrudis.wintheiser@hotmail.com",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417999,
-        "name": "Bhaumik Pothuvaal",
-        "email": "pothuvaal_bhaumik@runolfsdottir-altenwerth.test",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417996,
-        "name": "Agasti Asan IV",
-        "email": "agasti_asan_iv@breitenberg-fisher.example",
-        "gender": "female",
-        "status": "active"
-    },
-    {
-        "id": 8417994,
-        "name": "The Hon. Chiranjeev Pilla",
-        "email": "pilla_chiranjeev_the_hon@mosciski.example",
-        "gender": "male",
-        "status": "active"
-    },
-    {
-        "id": 8417054,
-        "name": "Mrs. Deeptimoy Embranthiri",
-        "email": "deeptimoy_embranthiri_mrs@lueilwitz.example",
-        "gender": "female",
-        "status": "inactive"
-    },
-    {
-        "id": 8417053,
-        "name": "Gaurang Agarwal",
-        "email": "gaurang_agarwal@buckridge.test",
-        "gender": "male",
-        "status": "active"
-    },
-    {
-        "id": 8417052,
-        "name": "Trilokanath Nehru",
-        "email": "nehru_trilokanath@weimann.test",
-        "gender": "male",
-        "status": "active"
-    }
-]
-[2026-04-02] 11:12:24:491 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:24:496 HttpRequest: 38 [INFO] - Performed POST public/v2/users
-[2026-04-02] 11:12:24:497 HttpRequest: 39 [INFO] - Body is {"name":"Lettie Farrell","email":"catrice.koelpin@hotmail.com","gender":"female","status":"active"}
-[2026-04-02] 11:12:24:882 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:24:883 HttpRequest: 70 [WARN] - {
-    "id": 8421433,
-    "name": "Lettie Farrell",
-    "email": "catrice.koelpin@hotmail.com",
+[2026-04-08] 18:15:32:967 HttpRequest: 71 [WARN] - Status code is: 200
+[2026-04-08] 18:19:04:928 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:19:04:930 CsvUtils: 130 [INFO] - Random row selected: {id=8426886, name=Hung Rau, email=eric.veum@gmail.com, gender=female, status=active}
+[2026-04-08] 18:19:04:931 CsvUtils: 89 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:19:04:931 CsvUtils: 108 [INFO] - Column 'id' extracted | values: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:19:04:931 CsvUtils: 119 [INFO] - Random value from column 'id': 8427116
+[2026-04-08] 18:19:04:931 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8427116
+[2026-04-08] 18:19:07:000 HttpRequest: 69 [WARN] - Response is: 
+[2026-04-08] 18:19:07:019 HttpRequest: 70 [WARN] - {
+    "id": 8427116,
+    "name": "Bobbie Goyette",
+    "email": "armand.leffler@gmail.com",
     "gender": "female",
     "status": "active"
 }
-[2026-04-02] 11:12:24:884 HttpRequest: 71 [WARN] - Status code is: 201
-[2026-04-02] 11:12:24:934 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8421433
-[2026-04-02] 11:12:25:283 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:25:285 HttpRequest: 70 [WARN] - {
-    "id": 8421433,
-    "name": "Lettie Farrell",
-    "email": "catrice.koelpin@hotmail.com",
+[2026-04-08] 18:19:07:020 HttpRequest: 71 [WARN] - Status code is: 200
+[2026-04-08] 18:28:28:983 CsvUtils: 87 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:28:28:984 CsvUtils: 128 [INFO] - Random row selected: {id=8426587, name=Margene Wolf, email=thaddeus.will@yahoo.com, gender=female, status=active}
+[2026-04-08] 18:28:28:984 CsvUtils: 87 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:28:28:984 CsvUtils: 106 [INFO] - Column 'id' extracted | values: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:28:28:984 CsvUtils: 117 [INFO] - Random value from column 'id': 8428393
+[2026-04-08] 18:28:28:985 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8428393
+[2026-04-08] 18:28:31:300 HttpRequest: 69 [WARN] - Response is: 
+[2026-04-08] 18:28:31:324 HttpRequest: 70 [WARN] - {
+    "id": 8428393,
+    "name": "Britt Murphy",
+    "email": "mitchell.pacocha@yahoo.com",
     "gender": "female",
     "status": "active"
 }
-[2026-04-02] 11:12:25:286 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:25:289 HttpRequest: 46 [INFO] - Performed PATCH public/v2/users/8421433
-[2026-04-02] 11:12:25:289 HttpRequest: 47 [INFO] - Body is {"name":"NewNameUpdate"}
-[2026-04-02] 11:12:25:663 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:25:664 HttpRequest: 70 [WARN] - {
-    "name": "NewNameUpdate",
-    "id": 8421433,
-    "email": "catrice.koelpin@hotmail.com",
+[2026-04-08] 18:28:31:325 HttpRequest: 71 [WARN] - Status code is: 200
+[2026-04-08] 18:31:53:690 CsvUtils: 87 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:31:53:691 CsvUtils: 128 [INFO] - Random row selected: {id=8426883, name=Olin Fay, email=tyrone.buckridge@gmail.com, gender=female, status=active}
+[2026-04-08] 18:31:53:691 CsvUtils: 87 [INFO] - CSV file successfully read: src/test/resources/users_data.csv | rows: 10
+[2026-04-08] 18:31:53:691 CsvUtils: 106 [INFO] - Column 'id' extracted | values: [8428394, 8428393, 8427373, 8427116, 8427115, 8426886, 8426883, 8426628, 8426626, 8426587]
+[2026-04-08] 18:31:53:691 CsvUtils: 117 [INFO] - Random value from column 'id': 8428394
+[2026-04-08] 18:31:53:691 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8428394
+[2026-04-08] 18:31:55:562 HttpRequest: 69 [WARN] - Response is: 
+[2026-04-08] 18:31:55:582 HttpRequest: 70 [WARN] - {
+    "id": 8428394,
+    "name": "Brianne Berge",
+    "email": "wilford.kshlerin@yahoo.com",
     "gender": "female",
     "status": "active"
 }
-[2026-04-02] 11:12:25:664 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:25:666 HttpRequest: 54 [INFO] - Performed PUT public/v2/users/8421433
-[2026-04-02] 11:12:25:666 HttpRequest: 55 [INFO] - Body is {"name":"Zane Spencer","email":"isidro.smith@gmail.com","gender":"female","status":"active"}
-[2026-04-02] 11:12:26:038 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:26:040 HttpRequest: 70 [WARN] - {
-    "email": "isidro.smith@gmail.com",
-    "name": "Zane Spencer",
-    "gender": "female",
-    "status": "active",
-    "id": 8421433
-}
-[2026-04-02] 11:12:26:040 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:26:043 HttpRequest: 62 [INFO] - Performed DELETE public/v2/users/8421433
-[2026-04-02] 11:12:26:447 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:26:449 HttpRequest: 70 [WARN] - 
-[2026-04-02] 11:12:26:450 HttpRequest: 71 [WARN] - Status code is: 204
-[2026-04-02] 11:12:26:464 HttpRequest: 31 [INFO] - Performed GET public/v2/posts
-[2026-04-02] 11:12:26:843 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:26:847 HttpRequest: 70 [WARN] - [
-    {
-        "id": 275275,
-        "user_id": 8421432,
-        "title": "Harry Potter and the Half-Blood Prince",
-        "body": "If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals."
-    },
-    {
-        "id": 275274,
-        "user_id": 8421429,
-        "title": "Harry Potter and the Order of the Phoenix",
-        "body": "It is our choices, Harry, that show what we truly are, far more than our abilities."
-    },
-    {
-        "id": 275273,
-        "user_id": 8421424,
-        "title": "Harry Potter and the Order of the Phoenix",
-        "body": "After all this time? Always."
-    },
-    {
-        "id": 275272,
-        "user_id": 8421372,
-        "title": "Harry Potter and the Sorcerer's Stone",
-        "body": "I solemnly swear that I am up to no good."
-    },
-    {
-        "id": 275205,
-        "user_id": 8418039,
-        "title": "Stillicidium vitium asperiores concido velum caritas utpote avarus.",
-        "body": "Eius sulum ea. Labore officia illo. Textus stips vesica. Corrupti cunae consequatur. Delinquo adsum vere. Amet validus aiunt. Utrum ait clam. Vel decipio armo. Anser non demoror. Sustineo decerno aurum. Viscus compono repudiandae. Inflammatio comedo spiritus."
-    },
-    {
-        "id": 275204,
-        "user_id": 8418039,
-        "title": "Sustineo blanditiis animadverto vito adulatio viscus arbor defaeco.",
-        "body": "Assentator aeger caelestis. Aggredior adaugeo degusto. Cognatus est ambulo. Textor tergum cum. Comprehendo stillicidium delinquo. Avaritia vae sustineo. Atrox veritas amplitudo. Averto barba itaque. Soleo temporibus dedico. Strues crudelis delectus. Sunt debilito verumtamen. Modi amplitudo conturbo."
-    },
-    {
-        "id": 275203,
-        "user_id": 8418037,
-        "title": "Non brevis careo advenio ea tondeo vix vesper cubicularis.",
-        "body": "Vel amiculum demens. Tergiversatio blanditiis similique. Sortitus autem aliquid. Advoco tumultus vero. Arma defero cibus. Consequuntur pauci carbo. Exercitationem tergo vito. Curatio molestiae vindico. Veritas cum totam. Optio allatus dolorem. Tumultus vae astrum. Quisquam censura despirmatio."
-    },
-    {
-        "id": 275202,
-        "user_id": 8418036,
-        "title": "Cum esse surculus balbus quasi.",
-        "body": "Theca acer comedo. Delicate turbo contra. Vitiosus verto tunc. Debilito provident ademptio. Acervus cultellus tertius. Cohaero corpus ambulo. Cedo viscus valde. Aestus corroboro conservo. Animadverto angulus placeat. Corpus candidus demergo. Vapulus crapula succedo. Demulceo ut et. Adsuesco tabesco cupiditate."
-    },
-    {
-        "id": 275201,
-        "user_id": 8418036,
-        "title": "Carpo infit aqua voco supra.",
-        "body": "Curiositas crudelis angustus. Capitulus textilis villa. Apostolus reprehenderit sit. Credo demoror celebrer. Ago absens vel. Adsidue adficio defessus. Beatae vespillo auxilium. Calamitas degenero aduro. Conculco subito iusto. Desipio degenero eum. Coaegresco defessus tardus. Demonstro autem vitiosus."
-    },
-    {
-        "id": 275200,
-        "user_id": 8418034,
-        "title": "Turba compello nesciunt bibo comitatus.",
-        "body": "Occaecati sperno abduco. A denego dolore. Id turpis quia. Altus cena virtus. Pauper pectus caelestis. Cogito corrumpo est. Audeo alo tametsi. Ager eum mollitia. Aeneus calcar demo. Adamo aperte degero. Error rem desidero."
-    }
-]
-[2026-04-02] 11:12:26:848 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:26:855 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8410591/posts
-[2026-04-02] 11:12:27:223 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:27:225 HttpRequest: 70 [WARN] - [
-    
-]
-[2026-04-02] 11:12:27:225 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:27:228 HttpRequest: 38 [INFO] - Performed POST public/v2/users/8410591/posts
-[2026-04-02] 11:12:27:229 HttpRequest: 39 [INFO] - Body is {"title":"Harry Potter and the Order of the Phoenix","body":"If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals."}
-[2026-04-02] 11:12:27:593 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:27:595 HttpRequest: 70 [WARN] - [
-    {
-        "field": "user",
-        "message": "must exist"
-    }
-]
-[2026-04-02] 11:12:27:595 HttpRequest: 71 [WARN] - Status code is: 422
-[2026-04-02] 11:12:27:610 HttpRequest: 31 [INFO] - Performed GET public/v2/users/8410591/todos
-[2026-04-02] 11:12:27:969 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:27:971 HttpRequest: 70 [WARN] - [
-    
-]
-[2026-04-02] 11:12:27:971 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:27:975 HttpRequest: 38 [INFO] - Performed POST public/v2/users/8410591/todos
-[2026-04-02] 11:12:27:975 HttpRequest: 39 [INFO] - Body is {"title":"Harry Potter and the Sorcerer's Stone","due_on":"5:30am","status":"pending"}
-[2026-04-02] 11:12:28:340 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:28:342 HttpRequest: 70 [WARN] - [
-    {
-        "field": "user",
-        "message": "must exist"
-    }
-]
-[2026-04-02] 11:12:28:342 HttpRequest: 71 [WARN] - Status code is: 422
-[2026-04-02] 11:12:28:360 HttpRequest: 31 [INFO] - Performed GET public/v2/posts/8410591/comments
-[2026-04-02] 11:12:28:723 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:28:724 HttpRequest: 70 [WARN] - [
-    
-]
-[2026-04-02] 11:12:28:725 HttpRequest: 71 [WARN] - Status code is: 200
-[2026-04-02] 11:12:28:727 HttpRequest: 38 [INFO] - Performed POST public/v2/posts/274694/comments
-[2026-04-02] 11:12:28:727 HttpRequest: 39 [INFO] - Body is {"name":"Sandy Hand","email":"olivia.murazik@yahoo.com","body":"Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength."}
-[2026-04-02] 11:12:29:097 HttpRequest: 69 [WARN] - Response is: 
-[2026-04-02] 11:12:29:098 HttpRequest: 70 [WARN] - [
-    {
-        "field": "post",
-        "message": "must exist"
-    }
-]
-[2026-04-02] 11:12:29:098 HttpRequest: 71 [WARN] - Status code is: 422
-[2026-04-02] 18:53:50:672 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 18:53:50:681 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 18:56:58:182 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 18:56:58:190 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 18:57:25:041 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 18:57:25:050 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:02:13:197 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:02:13:204 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:03:12:106 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:03:12:120 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:03:37:528 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:03:37:536 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:05:18:774 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:05:18:785 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:13:42:994 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:13:43:002 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:14:05:769 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:14:05:778 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:14:25:973 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:14:25:978 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:14:44:108 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:14:44:118 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:15:10:684 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:15:10:692 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:15:31:531 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:15:31:536 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:18:02:669 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:18:02:677 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:18:46:335 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:18:46:346 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:19:03:225 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:19:03:231 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:19:21:977 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:19:21:985 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:20:21:459 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:20:21:470 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:20:29:230 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:20:29:232 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 19:20:36:542 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 19:20:36:544 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
-[2026-04-02] 22:10:17:782 WebDriverManager: 1268 [INFO] - Using chromedriver 146.0.7680.165 (resolved driver for Chrome 146)
-[2026-04-02] 22:10:17:793 WebDriverManager: 1331 [INFO] - Exporting webdriver.chrome.driver as /Users/miraida/.cache/selenium/chromedriver/mac-arm64/146.0.7680.165/chromedriver
+[2026-04-08] 18:31:55:583 HttpRequest: 71 [WARN] - Status code is: 200

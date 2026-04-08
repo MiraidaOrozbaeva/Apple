@@ -1,9 +1,9 @@
 package org.example.db.beans;
 
-import kg.example.db.db_utils.DB_Connection;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
+import org.example.db.db_utils.DB_Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
