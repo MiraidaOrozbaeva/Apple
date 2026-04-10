@@ -4,8 +4,13 @@ pipeline {
     parameters {
         choice(
             name: 'testType',
-            choices: ['smoke', 'regression', 'all', 'ui', 'api', 'e2e'],
-            description: 'Выберите тип тестов для запуска'
+            choices: ['smoke', 'regression', 'all', 'ui', 'api', 'e2e', 'custom'],
+            description: 'Выберите тип тестов для запуска. Для своего тега выберите "custom"'
+        )
+        string(
+            name: 'customTag',
+            defaultValue: '',
+            description: 'Кастомный тег (используется если testType = custom). Например: TS001'
         )
         string(
             name: 'branch',
@@ -31,9 +36,17 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    def gradleTask = resolveGradleTask(params.testType)
-                    echo "Запускаем задачу: ${gradleTask} на ветке: ${params.branch}"
-                    sh "./gradlew ${gradleTask}"
+                    if (params.testType == 'custom') {
+                        if (!params.customTag?.trim()) {
+                            error("Поле customTag не может быть пустым если testType = custom")
+                        }
+                        echo "Запускаем кастомный тег: ${params.customTag} на ветке: ${params.branch}"
+                        sh "./gradlew test -Dgroups=${params.customTag}"
+                    } else {
+                        def gradleTask = resolveGradleTask(params.testType)
+                        echo "Запускаем задачу: ${gradleTask} на ветке: ${params.branch}"
+                        sh "./gradlew ${gradleTask}"
+                    }
                 }
             }
         }
