@@ -1,6 +1,7 @@
 package demoqaTest.elementsTest;
 
 import demoqaTest.BaseTest;
+import io.qameta.allure.AllureId;
 import org.example.demoqa.models.UserTextBox;
 import org.example.demoqa.utils.RandomUtils;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +13,7 @@ public class TextBoxTest extends BaseTest {
 
 
     @Test
-    @Tag("SMOKE")
+    @Tag("TextBoxTest")
     @DisplayName("Fill up text box form with created user details")
     void textBoxTest(){
         UserTextBox userTextBox = new UserTextBox("Miraida", "miraida@gmail.com",
