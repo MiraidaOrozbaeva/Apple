@@ -41,7 +41,9 @@ pipeline {
 
     post {
         always {
-            junit testResults: '**/build/test-results/**/*.xml', allowEmptyResults: true
+            allure([
+                results: [[path: 'build/allure-results']]
+            ])
         }
         success {
             echo "✅ Тесты [${params.testType}] на ветке [${params.branch}] прошли успешно!"

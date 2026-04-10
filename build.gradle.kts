@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("io.qameta.allure") version "2.12.0"
 }
 
 group = "org.example"
@@ -69,12 +70,13 @@ dependencies {
 //    implementation("net.datafaker:datafaker:2.5.4")
 
 }
-
 tasks.withType<Test> {
     useJUnitPlatform()
     testClassesDirs = sourceSets["test"].output.classesDirs
     classpath = sourceSets["test"].runtimeClasspath
     outputs.upToDateWhen { false }
+    jvmArgs("-javaagent:${configurations.runtimeClasspath.get()
+        .find { it.name.contains("aspectjweaver") }}")  // ← добавить это
 }
 
 tasks.register<Test>("allTests") {
