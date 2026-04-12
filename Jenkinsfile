@@ -39,13 +39,19 @@ pipeline {
             }
             steps {
                 script {
-                    // Копируем список упавших тестов из предыдущего билда
-                    copyArtifacts(
-                        projectName: env.JOB_NAME,
-                        selector: lastCompleted(),
-                        filter: 'failed-tests.txt',
-                        optional: false
-                    )
+                    def prevBuild = currentBuild.previousBuild
+                    if (!prevBuild) {
+                        error("❌ Нет предыдущего билда для получения списка упавших тестов.")
+                    }
+
+                    def jobName = env.JOB_NAME
+                    def prevBuildNum = prevBuild.number
+
+                    sh """
+                        curl -s -o failed-tests.txt \
+                          http://localhost:8080/job/${jobName}/${prevBuildNum}/artifact/failed-tests.txt
+                    """
+
                     def failedTests = readFile('failed-tests.txt').trim()
                     if (!failedTests) {
                         error("❌ Файл failed-tests.txt пуст — нет упавших тестов для перезапуска.")
@@ -60,14 +66,10 @@ pipeline {
                 script {
                     if (params.testType == 'rerun-failed') {
                         def failedTests = readFile('failed-tests.txt').trim()
-
-                        // Преобразуем формат: каждая строка — полное имя класса+метода
-                        // JUnit-формат: com.example.MyTest#myMethod -> --tests "com.example.MyTest.myMethod"
                         def testArgs = failedTests.split('\n').collect { line ->
                             def trimmed = line.trim().replace('#', '.')
                             "--tests \"${trimmed}\""
                         }.join(' ')
-
                         echo "Перезапускаем упавшие тесты: ${testArgs}"
                         sh "./gradlew test ${testArgs}"
 
@@ -91,37 +93,49 @@ pipeline {
     post {
         always {
             script {
-                // Собираем список упавших тестов из XML-отчётов и сохраняем в файл
-                def failedList = []
-                def xmlFiles = findFiles(glob: 'build/test-results/**/*.xml')
+                try {
+                    def failedList = []
 
-                xmlFiles.each { xmlFile ->
-                    def xml = readFile(xmlFile.path)
-                    def parsed = new XmlSlurper().parseText(xml)
+                    def xmlOutput = sh(
+                        script: "find build/test-results -name '*.xml' 2>/dev/null || true",
+                        returnStdout: true
+                    ).trim()
 
-                    parsed.'testcase'.each { tc ->
-                        if (tc.'failure'.size() > 0 || tc.'error'.size() > 0) {
-                            // Формат: com.example.MyTest#myMethod
-                            failedList << "${tc.@classname}#${tc.@name}"
+                    if (xmlOutput) {
+                        xmlOutput.split('\n').each { xmlPath ->
+                            def xml = readFile(xmlPath.trim())
+                            def parsed = new XmlSlurper().parseText(xml)
+                            parsed.'testcase'.each { tc ->
+                                if (tc.'failure'.size() > 0 || tc.'error'.size() > 0) {
+                                    failedList << "${tc.@classname}#${tc.@name}"
+                                }
+                            }
                         }
                     }
+
+                    writeFile(
+                        file: 'failed-tests.txt',
+                        text: failedList.join('\n')
+                    )
+
+                    echo failedList
+                        ? "⚠️ Упавшие тесты сохранены (${failedList.size()} шт.): ${failedList.join(', ')}"
+                        : "✅ Упавших тестов нет."
+
+                    archiveArtifacts artifacts: 'failed-tests.txt', allowEmptyArchive: true
+
+                } catch (err) {
+                    echo "⚠️ Не удалось собрать список упавших тестов: ${err.message}"
                 }
-
-                writeFile(
-                    file: 'failed-tests.txt',
-                    text: failedList.join('\n')
-                )
-                echo failedList
-                    ? "⚠️ Упавшие тесты сохранены (${failedList.size()} шт.): ${failedList.join(', ')}"
-                    : "✅ Упавших тестов нет."
-
-                // Публикуем файл как артефакт для следующего билда
-                archiveArtifacts artifacts: 'failed-tests.txt', allowEmptyArchive: true
             }
 
-            allure([
-                results: [[path: 'build/allure-results']]
-            ])
+            allure(
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'build/allure-results']],
+                report: 'allure-report',
+                reportBuildPolicy: 'ALWAYS'
+            )
         }
 
         success {
