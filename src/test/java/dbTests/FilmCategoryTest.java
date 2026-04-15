@@ -1,7 +1,7 @@
 package dbTests;
 
 import org.example.db.beans.Film_category;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 import org.junit.jupiter.api.*;
 
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class FilmCategoryTest {
 
     @BeforeAll
     static void setUp() throws SQLException {
-        DB_Connection.openConnection("dvdRental");
+        DatabaseConnection.openConnection("dvdRental");
     }
 
     // ========================= GET ALL =========================

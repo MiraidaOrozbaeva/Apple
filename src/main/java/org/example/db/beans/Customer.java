@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -50,7 +50,7 @@ public class Customer {
 
     public static List<Customer> getAllFromCustomer() throws SQLException {
         String query = "SELECT * FROM customer;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Customer.class);
         }
     }
@@ -58,7 +58,7 @@ public class Customer {
     public static Customer getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM customer WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -71,7 +71,7 @@ public class Customer {
 
         String query = "INSERT INTO customer (store_id, first_name, last_name, email, address_id, " +
                 "activebool, create_date, last_update, active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 customer.getStore_id(),
                 customer.getFirst_name(),
                 customer.getLast_name(),
@@ -99,7 +99,7 @@ public class Customer {
 
         validateColumn(column);
         String query = "UPDATE customer SET " + column + " = ? WHERE customer_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, customer_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, customer_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -113,7 +113,7 @@ public class Customer {
 
         Customer customerToDelete = getBy("customer_id", customer_id);
         String query = "DELETE FROM customer WHERE customer_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, customer_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, customer_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

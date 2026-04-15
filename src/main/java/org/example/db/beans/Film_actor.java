@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class Film_actor {
 
     public static List<Film_actor> getAllFromFilmActor() throws SQLException {
         String query = "SELECT * FROM film_actor;";
-        try (ResultSet resultSet = DB_Connection.makeQuery(query)) {
+        try (ResultSet resultSet = DatabaseConnection.makeQuery(query)) {
             return new BeanProcessor().toBeanList(resultSet, Film_actor.class);
         }
     }
@@ -48,19 +48,17 @@ public class Film_actor {
     public static Film_actor getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM film_actor WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
-        if (!resultSet.next()) {
-            return null;
-        } else {
-            return new BeanProcessor().toBean(resultSet, Film_actor.class);
+        try (ResultSet rs = DatabaseConnection.makeQuery(query, value)) { // ← try-with-resources
+            return rs.next() ? new BeanProcessor().toBean(rs, Film_actor.class) : null;
         }
     }
 
     public static Film_actor insert(Film_actor filmActor) throws SQLException {
         long startTime = System.currentTimeMillis();
 
-        String query = "INSERT INTO film_actor (film_id, last_update) VALUES (?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        String query = "INSERT INTO film_actor (actor_id, film_id, last_update) VALUES (?, ?, ?)";
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
+                filmActor.getActor_id(),
                 filmActor.getFilm_id(),
                 filmActor.getLast_update())) {
 
@@ -81,7 +79,7 @@ public class Film_actor {
 
         validateColumn(column);
         String query = "UPDATE film_actor SET " + column + " = ? WHERE actor_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, actor_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, actor_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -95,7 +93,7 @@ public class Film_actor {
 
         Film_actor filmActorToDelete = getBy("actor_id", actor_id);
         String query = "DELETE FROM film_actor WHERE actor_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, actor_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, actor_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

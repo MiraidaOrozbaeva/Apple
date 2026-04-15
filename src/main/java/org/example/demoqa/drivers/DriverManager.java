@@ -6,41 +6,39 @@ import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
 
-    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
-    @Step("File Reader Util Get Value")
+    @Step("Initialize WebDriver")
     public static WebDriver getDriver() {
-        if (driver == null) {
+        if (driverThreadLocal.get() == null) {
             switch (FileReaderUtil.getValue("browser").toLowerCase()) {
                 case "chrome":
-                    driver = ChromeWebDriver.loadChromeDriver();
+                    driverThreadLocal.set(ChromeWebDriver.loadChromeDriver());
                     break;
                 case "edge":
-                    driver = EdgeWebDriver.loadEdgeWebDriver();
+                    driverThreadLocal.set(EdgeWebDriver.loadEdgeWebDriver());
                     break;
                 case "safari":
-                    driver = SafariWebDriver.loadSafariWebDriver();
+                    driverThreadLocal.set(SafariWebDriver.loadSafariWebDriver());
                     break;
                 case "firefox":
-                    driver = FireFoxWebDriver.loadFirefoxWebDriver();
+                    driverThreadLocal.set(FireFoxWebDriver.loadFirefoxWebDriver());
                     break;
                 default:
                     throw new IllegalArgumentException("Wrong driver name");
             }
         }
         System.out.println("BROWSER: = " + System.getenv("BROWSER IS: "));
-        return driver;
+        return driverThreadLocal.get();
     }
 
-    @Step("Close Driver")
-    public static void closeDriver(){
-        try {
-            if (driver != null){
-                driver.quit();
-                driver = null;
-            }
-        } catch (Exception e){
-            System.err.println("Error while closing driver");
+    @Step("Close WebDriver")
+    public static void closeDriver() {
+        if (driverThreadLocal.get() != null) {
+            driverThreadLocal.get().quit();
+            driverThreadLocal.remove(); // обязательно! иначе ThreadLocal не очищается
         }
     }
 }
+// Почему так: ThreadLocal гарантирует, что у каждого потока (теста) есть своя независимая копия драйвера.
+// Это стандартный паттерн для параллельного запуска тестов.

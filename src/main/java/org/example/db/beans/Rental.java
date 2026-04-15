@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class Rental {
 
     public static List<Rental> getAllFromRental() throws SQLException {
         String query = "SELECT * FROM rental;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Rental.class);
         }
     }
@@ -53,7 +53,7 @@ public class Rental {
     public static Rental getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM rental WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -66,7 +66,7 @@ public class Rental {
 
         String query = "INSERT INTO rental (rental_date, inventory_id, customer_id, return_date, " +
                 "staff_id, last_update) VALUES (?, ?, ?, ?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 rental.getRental_date(),
                 rental.getInventory_id(),
                 rental.getCustomer_id(),
@@ -91,7 +91,7 @@ public class Rental {
 
         validateColumn(column);
         String query = "UPDATE rental SET " + column + " = ? WHERE rental_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, rental_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, rental_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -105,7 +105,7 @@ public class Rental {
 
         Rental rentalToDelete = getBy("rental_id", rental_id);
         String query = "DELETE FROM rental WHERE rental_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, rental_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, rental_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

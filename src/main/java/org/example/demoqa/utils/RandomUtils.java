@@ -26,7 +26,7 @@ public class RandomUtils {
         userPracticeForm.setGender(faker.options().option("female", "male", "other"));
         userPracticeForm.setMobileNumber(String.valueOf(faker.number().randomNumber(10,true)));
         userPracticeForm.setDateOfBirth(faker.date().birthday().toString());
-        userPracticeForm.setSubject(faker.options().option(allSubjectsList).get(new Random().nextInt(allSubjectsList.size())));
+        userPracticeForm.setSubject(allSubjectsList.get(new Random().nextInt(allSubjectsList.size())));
         userPracticeForm.setCurrentAddress(faker.address().fullAddress());
         return userPracticeForm;
     }

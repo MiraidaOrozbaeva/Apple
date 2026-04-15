@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class Store {
 
     public static List<Store> getAllFromStore() throws SQLException {
         String query = "SELECT * FROM store;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Store.class);
         }
     }
@@ -49,7 +49,7 @@ public class Store {
     public static Store getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM store WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -61,7 +61,7 @@ public class Store {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO store (manager_staff_id, address_id, last_update) VALUES (?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 store.getManager_staff_id(),
                 store.getAddress_id(),
                 store.getLast_update())){
@@ -83,7 +83,7 @@ public class Store {
 
         validateColumn(column);
         String query = "UPDATE store SET " + column + " = ? WHERE store_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, store_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, store_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -97,7 +97,7 @@ public class Store {
 
         Store storeToDelete = getBy("store_id", store_id);
         String query = "DELETE FROM store WHERE store_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, store_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, store_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

@@ -1,7 +1,6 @@
 package demoqaTest.elementsTest;
 
 import demoqaTest.BaseTest;
-import io.qameta.allure.AllureId;
 import org.example.demoqa.models.UserTextBox;
 import org.example.demoqa.utils.RandomUtils;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +22,7 @@ public class TextBoxTest extends BaseTest {
 //        textBoxPage.fillUserName("Miraida").fillUserEmail("miraida@gmail.com").fillCurrentAddress("Bishkek city Mira 333")
 //                .fillPermanentAddress("Kyrgyzstan Bishkek").clickSubmit();
 
-        textBoxPage.fiilUpTextBoxForm(userTextBox);
+        textBoxPage.fillUpTextBoxForm(userTextBox);
     }
 
     @Test
@@ -32,7 +31,7 @@ public class TextBoxTest extends BaseTest {
     void textBoxCompareDisplayedInfoTest(){
         UserTextBox userTextBox = RandomUtils.generateTextBoxForm();
         driver.get("https://demoqa.com/text-box");
-        textBoxPage.fiilUpTextBoxForm(userTextBox);
+        textBoxPage.fillUpTextBoxForm(userTextBox);
 
         Assertions.assertEquals(textBoxPage.getSubmittedName(), userTextBox.getName()
                 , "Name does not match");

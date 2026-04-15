@@ -1,11 +1,10 @@
 package org.example.demoqa.pages;
 
 import io.qameta.allure.Step;
+import org.example.demoqa.drivers.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class RadioButtonPage extends BasePage{
 
@@ -17,13 +16,13 @@ public class RadioButtonPage extends BasePage{
 
     @Step("Click yes button")
     public RadioButtonPage clickYesBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesCheckBox);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", yesCheckBox);
         return this;
     }
 
     @Step("Click impressive button")
     public RadioButtonPage clickImpressiveBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", impressiveCheckBox);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", impressiveCheckBox);
         return this;
     }
 }

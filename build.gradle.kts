@@ -68,15 +68,33 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/net.datafaker/datafaker
 //    implementation("net.datafaker:datafaker:2.5.4")
 
+    // Общая конфигурация для всех Test задач - чтобы не дублировать jvmArgs
+    val aspectjAgent = configurations.runtimeClasspath.get()
+        .find { it.name.contains("aspectjweaver") }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+        testClassesDirs = sourceSets["test"].output.classesDirs
+        classpath = sourceSets["test"].runtimeClasspath
+        outputs.upToDateWhen { false }
+        jvmArgs("-javaagent:${aspectjAgent}")
+    }
+
+// Перезапуск упавших тестов - задача без тегов, фильтрация идёт через --tests из Jenkinsfile
+    tasks.register<Test>("rerunFailedTests") {
+        description = "Перезапускает конкретные тесты переданные через --tests параметр"
+        group = "verification"
+    }
 }
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testClassesDirs = sourceSets["test"].output.classesDirs
-    classpath = sourceSets["test"].runtimeClasspath
-    outputs.upToDateWhen { false }
-    jvmArgs("-javaagent:${configurations.runtimeClasspath.get()
-        .find { it.name.contains("aspectjweaver") }}")  // ← добавить это
-}
+
+//tasks.withType<Test> {
+//    useJUnitPlatform()
+//    testClassesDirs = sourceSets["test"].output.classesDirs
+//    classpath = sourceSets["test"].runtimeClasspath
+//    outputs.upToDateWhen { false }
+//    jvmArgs("-javaagent:${configurations.runtimeClasspath.get()
+//        .find { it.name.contains("aspectjweaver") }}")  // ← добавить это
+//}
 
 tasks.register<Test>("allTests") {
     useJUnitPlatform {

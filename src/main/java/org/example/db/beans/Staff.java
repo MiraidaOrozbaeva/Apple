@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +49,7 @@ public class Staff {
 
     public static List<Staff> getAllFromStaff() throws SQLException {
         String query = "SELECT * FROM staff;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Staff.class);
         }
     }
@@ -57,7 +57,7 @@ public class Staff {
     public static Staff getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM staff WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -70,7 +70,7 @@ public class Staff {
 
         String query = "INSERT INTO staff (first_name, last_name, address_id, email, store_id, active, " +
                 "username, password, last_update) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 staff.getFirst_name(),
                 staff.getLast_name(),
                 staff.getAddress_id(),
@@ -98,7 +98,7 @@ public class Staff {
 
         validateColumn(column);
         String query = "UPDATE staff SET " + column + " = ? WHERE staff_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, staff_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, staff_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -112,7 +112,7 @@ public class Staff {
 
         Staff staffToDelete = getBy("staff_id", staff_id);
         String query = "DELETE FROM staff WHERE staff_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, staff_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, staff_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

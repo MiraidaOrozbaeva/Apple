@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class City {
 
     public static List<City> getAllFromCity() throws SQLException {
         String query = "SELECT * FROM city;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, City.class);
         }
     }
@@ -49,7 +49,7 @@ public class City {
     public static City getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM city WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -61,7 +61,7 @@ public class City {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO city (city, country_id, last_update) VALUES (?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 city1.getCity(),
                 city1.getCountry_id(),
                 city1.getLast_update())){
@@ -83,7 +83,7 @@ public class City {
 
         validateColumn(column);
         String query = "UPDATE city SET " + column + " = ? WHERE city_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, city_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, city_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -97,7 +97,7 @@ public class City {
 
         City cityToDelete = getBy("city_id", city_id);
         String query = "DELETE FROM city WHERE city_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, city_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, city_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

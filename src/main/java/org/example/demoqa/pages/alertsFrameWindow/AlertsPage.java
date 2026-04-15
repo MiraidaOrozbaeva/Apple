@@ -1,12 +1,11 @@
 package org.example.demoqa.pages.alertsFrameWindow;
 
 import io.qameta.allure.Step;
+import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.pages.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class AlertsPage extends BasePage {
 
@@ -24,25 +23,25 @@ public class AlertsPage extends BasePage {
 
     @Step("Click alert button")
     public AlertsPage clickAlertBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", alertBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", alertBtn);
         return this;
     }
 
     @Step("Click time alert button")
     public AlertsPage clickTimerAlertBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", timerAlertBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", timerAlertBtn);
         return this;
     }
 
     @Step("Click confirm button")
     public AlertsPage clickConfirmBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", confirmBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", confirmBtn);
         return this;
     }
 
     @Step("Click promt button")
     public AlertsPage clickPromptBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", promtBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", promtBtn);
         return this;
     }
 }

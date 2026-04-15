@@ -2,46 +2,55 @@
 <Configuration status="WARN">
     <Appenders>
 
-        <!-- ERROR - красный -->
+        <!-- ERROR + FATAL - выводим в SYSTEM_ERR -->
         <Console name="ErrorFatal" target="SYSTEM_ERR">
-            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%p] - %m%n"/>
+            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%-5p] - %m%n"/>
             <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
 
-        <!-- WARN - зелёный -->
+        <!-- WARN -->
         <Console name="Warn" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%p] - %m%n"/>
+            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%-5p] - %m%n"/>
             <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
 
-        <!-- INFO - белый -->
+        <!-- INFO -->
         <Console name="Info" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%p] - %m%n"/>
+            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%-5p] - %m%n"/>
             <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
 
-        <!-- DEBUG - cyan -->
+        <!-- DEBUG -->
         <Console name="Debug" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%p] - %m%n"/>
+            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%-5p] - %m%n"/>
             <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
         </Console>
 
-        <!-- FILE - rolling daily -->
+        <!-- FILE - rolling daily, путь исправлен на build/ под Gradle -->
         <RollingFile name="FILES"
-                     fileName="target/logs/module-events.log"
-                     filePattern="target/logs/module-events-%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%p] - %m%n"/>
+                     fileName="build/logs/module-events.log"
+                     filePattern="build/logs/module-events-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{[yyyy-MM-dd] HH:mm:ss:SSS} %c{1}: %L [%-5p] - %m%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <!-- Дополнительно ротируем если файл вырос больше 10MB -->
+                <SizeBasedTriggeringPolicy size="10MB"/>
             </Policies>
+            <!-- Храним логи за последние 30 дней -->
+            <DefaultRolloverStrategy max="30"/>
         </RollingFile>
 
     </Appenders>
 
     <Loggers>
-        <!-- Глушим лишние логи от библиотек -->
-        <Logger name="org.littleshoot" level="OFF"/>
-        <Logger name="io.restassured" level="WARN"/>
+        <!-- Глушим шумные логи от сторонних библиотек -->
+        <Logger name="org.littleshoot"              level="OFF"  additivity="false"/>
+        <Logger name="io.restassured"               level="WARN" additivity="false"/>
+        <Logger name="org.apache.http"              level="WARN" additivity="false"/>
+        <Logger name="io.netty"                     level="WARN" additivity="false"/>
+        <Logger name="com.codeborne.selenide"       level="WARN" additivity="false"/>
+        <Logger name="org.openqa.selenium"          level="WARN" additivity="false"/>
+        <Logger name="io.github.bonigarcia"         level="WARN" additivity="false"/>
 
         <Root level="INFO">
             <AppenderRef ref="ErrorFatal"/>

@@ -1,11 +1,10 @@
 package org.example.demoqa.pages;
 
 import io.qameta.allure.Step;
+import org.example.demoqa.drivers.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class CheckBoxPage extends BasePage{
 
@@ -23,19 +22,19 @@ public class CheckBoxPage extends BasePage{
 
     @Step("Click collapse all button")
     public CheckBoxPage clickCollapseAllBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", collapseAllBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", collapseAllBtn);
         return this;
     }
 
     @Step("Click expand all button")
     public CheckBoxPage clickExpandAllBtn(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", expandAllBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", expandAllBtn);
         return this;
     }
 
     @Step("Click collapse button arrow")
     public CheckBoxPage clickCollapseBtnArrow(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", collapseBtnArrow);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", collapseBtnArrow);
         return this;
     }
 }

@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,7 +53,7 @@ public class Film {
 
     public static List<Film> getAllFromFilm() throws SQLException {
         String query = "SELECT * FROM film;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Film.class);
         }
     }
@@ -61,7 +61,7 @@ public class Film {
     public static Film getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM film WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -75,7 +75,7 @@ public class Film {
         String query = "INSERT INTO film (title, description, release_year, language_id, rental_duration," +
                 "rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 film.getTitle(),
                 film.getDescription(),
                 film.getRelease_year(),
@@ -106,7 +106,7 @@ public class Film {
 
         validateColumn(column);
         String query = "UPDATE film SET " + column + " = ? WHERE film_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, film_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, film_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -120,7 +120,7 @@ public class Film {
 
         Film filmToDelete = getBy("film_id", film_id);
         String query = "DELETE FROM film WHERE film_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, film_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, film_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

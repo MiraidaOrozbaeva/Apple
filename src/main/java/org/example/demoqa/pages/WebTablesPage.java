@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.example.demoqa.drivers.DriverManager;
 import org.example.demoqa.models.Employee;
 import org.example.demoqa.models.UserWebTables;
-import org.example.demoqa.utils.RandomUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -15,8 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class WebTablesPage extends BasePage {
 
@@ -52,7 +49,7 @@ public class WebTablesPage extends BasePage {
 
     @Step("Click add button")
     public WebTablesPage clickAddBtn() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addNewRecordBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", addNewRecordBtn);
         return this;
     }
 
@@ -94,7 +91,7 @@ public class WebTablesPage extends BasePage {
 
     @Step("Click submit button")
     public WebTablesPage clickSubmitBtn() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", submitBtn);
         return this;
     }
 
@@ -142,7 +139,7 @@ public class WebTablesPage extends BasePage {
             if (isExist){
                 WebElement edit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                         "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'edit')]")));
-                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", edit);
+                ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", edit);
             }
         }
         return this;
@@ -153,7 +150,7 @@ public class WebTablesPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(5));
         WebElement delete = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
                 "//td[text()='" + name + "']/ancestor::tr//span[starts-with(@id,'delete')]")));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", delete);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", delete);
         return this;
     }
 

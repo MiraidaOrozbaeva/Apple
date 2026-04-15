@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeWebDriver {
 
-    public static WebDriver driver;
+    // поле driver здесь вообще не нужно — фабричный метод должен просто создавать и возвращать
 
     @Step("Chrome Driver Set Up")
     public static WebDriver loadChromeDriver(){
@@ -17,8 +17,13 @@ public class ChromeWebDriver {
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.addArguments("--headless");  // ← добавили
-        driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver(options); // локальная переменная!
         driver.manage().window().maximize();
-        return driver;
+        return driver; // возвращаем, но не храним
     }
 }
+// Проблема: Поле driver объявлено как public static.
+// Это означает, что оно одно на весь класс (не на поток).
+// При параллельном запуске тестов два потока будут писать в одно поле и читать из него — тест A получит браузер теста B.
+// Кроме того, в TextBoxPage.java есть прямой импорт
+// import static org.example.demoqa.drivers.ChromeWebDriver.driver — Page-объект напрямую тащит статический драйвер, минуя DriverManager.

@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class Inventory {
 
     public static List<Inventory> getAllFromInventory() throws SQLException {
         String query = "SELECT * FROM inventory;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Inventory.class);
         }
     }
@@ -49,7 +49,7 @@ public class Inventory {
     public static Inventory getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM inventory WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -61,7 +61,7 @@ public class Inventory {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO inventory (film_id, store_id, last_update) VALUES (?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 inventory.getFilm_id(),
                 inventory.getStore_id(),
                 inventory.getLast_update())){
@@ -83,7 +83,7 @@ public class Inventory {
 
         validateColumn(column);
         String query = "UPDATE inventory SET " + column + " = ? WHERE inventory_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, inventory_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, inventory_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -97,7 +97,7 @@ public class Inventory {
 
         Inventory inventoryToDelete = getBy("inventory_id", inventory_id);
         String query = "DELETE FROM inventory WHERE inventory_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, inventory_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, inventory_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class Country {
 
     public static List<Country> getAllFromCountry() throws SQLException {
         String query = "SELECT * FROM country;";
-        try (ResultSet resultSet = DB_Connection.makeQuery(query)) {
+        try (ResultSet resultSet = DatabaseConnection.makeQuery(query)) {
             return new BeanProcessor().toBeanList(resultSet, Country.class);
         }
     }
@@ -48,7 +48,7 @@ public class Country {
     public static Country getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM country WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()) {
             return null;
         } else {
@@ -60,7 +60,7 @@ public class Country {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO country (country, last_update) VALUES (?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 country1.getCountry(),
                 country1.getLast_update())) {
 
@@ -81,7 +81,7 @@ public class Country {
 
         validateColumn(column);
         String query = "UPDATE country SET " + column + " = ? WHERE country_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, country_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, country_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -95,7 +95,7 @@ public class Country {
 
         Country countryToDelete = getBy("country_id", country_id);
         String query = "DELETE FROM country WHERE country_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, country_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, country_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

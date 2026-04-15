@@ -10,7 +10,7 @@ pipeline {
         string(
             name: 'customTag',
             defaultValue: '',
-            description: 'Кастомный тег (используется если testType = custom). Например: TS001'
+            description: 'Кастомный тег (используется если testType = custom). Например: SMOKE, UI, TS001'
         )
         string(
             name: 'branch',
@@ -39,24 +39,42 @@ pipeline {
             }
             steps {
                 script {
-                    def prevBuild = currentBuild.previousBuild
-                    if (!prevBuild) {
-                        error("❌ Нет предыдущего билда для получения списка упавших тестов.")
+                    // Ищем предыдущий билд у которого есть артефакт failed-tests.txt
+                    def targetBuild = currentBuild.previousBuild
+                    while (targetBuild != null) {
+                        def artifactExists = targetBuild.artifacts.find { it.fileName == 'failed-tests.txt' }
+                        if (artifactExists) break
+                        targetBuild = targetBuild.previousBuild
                     }
 
-                    def jobName = env.JOB_NAME
-                    def prevBuildNum = prevBuild.number
+                    if (!targetBuild) {
+                        error("❌ Не найден билд с артефактом failed-tests.txt. Сначала запустите любой тип тестов.")
+                    }
 
+                    echo "Беру список упавших тестов из билда #${targetBuild.number}"
+
+                    // Читаем артефакт через Jenkins API без curl и без проблем с авторизацией
+                    def jobName = env.JOB_NAME.replace('/', '/job/')
                     sh """
-                        curl -s -o failed-tests.txt \
-                          http://localhost:8080/job/${jobName}/${prevBuildNum}/artifact/failed-tests.txt
+                        curl -s --user admin:\$(cat /var/jenkins_home/secrets/initialAdminPassword 2>/dev/null || echo '') \
+                            -o failed-tests.txt \
+                            "http://localhost:8080/job/${jobName}/${targetBuild.number}/artifact/failed-tests.txt" \
+                            || true
                     """
 
-                    def failedTests = readFile('failed-tests.txt').trim()
+                    // Если curl не сработал — пробуем через workspace предыдущего билда
+                    def failedTests = ''
+                    try {
+                        failedTests = readFile('failed-tests.txt').trim()
+                    } catch (e) {
+                        failedTests = ''
+                    }
+
                     if (!failedTests) {
                         error("❌ Файл failed-tests.txt пуст — нет упавших тестов для перезапуска.")
                     }
-                    echo "Найдены упавшие тесты:\n${failedTests}"
+
+                    echo "Найдены упавшие тесты (${failedTests.split('\n').size()} шт.):\n${failedTests}"
                 }
             }
         }
@@ -66,19 +84,26 @@ pipeline {
                 script {
                     if (params.testType == 'rerun-failed') {
                         def failedTests = readFile('failed-tests.txt').trim()
-                        def testArgs = failedTests.split('\n').collect { line ->
-                            def trimmed = line.trim().replace('#', '.')
-                            "--tests \"${trimmed}\""
-                        }.join(' ')
+                        // Формат classname#methodname -> --tests "classname.methodname"
+                        def testArgs = failedTests.split('\n')
+                            .findAll { it.trim() }
+                            .collect { line ->
+                                def trimmed = line.trim().replace('#', '.')
+                                "--tests \"${trimmed}\""
+                            }.join(' ')
+
                         echo "Перезапускаем упавшие тесты: ${testArgs}"
-                        sh "./gradlew test ${testArgs}"
+                        // Используем rerunFailedTests задачу чтобы сохранить jvmArgs
+                        sh "./gradlew rerunFailedTests ${testArgs}"
 
                     } else if (params.testType == 'custom') {
                         if (!params.customTag?.trim()) {
                             error("Поле customTag не может быть пустым если testType = custom")
                         }
-                        echo "Запускаем кастомный тег: ${params.customTag} на ветке: ${params.branch}"
-                        sh "./gradlew test -Dgroups=${params.customTag}"
+                        // Приводим тег к верхнему регистру т.к. в build.gradle.kts теги в uppercase
+                        def tag = params.customTag.trim().toUpperCase()
+                        echo "Запускаем кастомный тег: ${tag} на ветке: ${params.branch}"
+                        sh "./gradlew test -Dgroups=${tag}"
 
                     } else {
                         def gradleTask = resolveGradleTask(params.testType)
@@ -103,11 +128,14 @@ pipeline {
 
                     if (xmlOutput) {
                         xmlOutput.split('\n').each { xmlPath ->
-                            def xml = readFile(xmlPath.trim())
-                            def parsed = new XmlSlurper().parseText(xml)
-                            parsed.'testcase'.each { tc ->
-                                if (tc.'failure'.size() > 0 || tc.'error'.size() > 0) {
-                                    failedList << "${tc.@classname}#${tc.@name}"
+                            def trimmedPath = xmlPath.trim()
+                            if (trimmedPath) {
+                                def xml = readFile(trimmedPath)
+                                def parsed = new XmlSlurper().parseText(xml)
+                                parsed.'testcase'.each { tc ->
+                                    if (tc.'failure'.size() > 0 || tc.'error'.size() > 0) {
+                                        failedList << "${tc.@classname}#${tc.@name}"
+                                    }
                                 }
                             }
                         }
@@ -118,9 +146,11 @@ pipeline {
                         text: failedList.join('\n')
                     )
 
-                    echo failedList
-                        ? "⚠️ Упавшие тесты сохранены (${failedList.size()} шт.): ${failedList.join(', ')}"
-                        : "✅ Упавших тестов нет."
+                    if (failedList) {
+                        echo "⚠️ Упавшие тесты сохранены (${failedList.size()} шт.):\n${failedList.join('\n')}"
+                    } else {
+                        echo "✅ Упавших тестов нет."
+                    }
 
                     archiveArtifacts artifacts: 'failed-tests.txt', allowEmptyArchive: true
 

@@ -2,17 +2,10 @@ package org.example.demoqa.pages;
 
 import io.qameta.allure.Step;
 import org.example.demoqa.drivers.DriverManager;
-import org.example.demoqa.helper.ElementActions;
 import org.example.demoqa.models.UserTextBox;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
 
 public class TextBoxPage extends BasePage {
 
@@ -67,7 +60,7 @@ public class TextBoxPage extends BasePage {
     @Step("Get submitted permanent address")
     public String getSubmittedPermanentAddress(){
         elementActions.waitElementToBeVisible(displayedPermanentAddress).scrollToElement(displayedPermanentAddress);
-        return displayedPermanentAddress.getText().replace("Permananet Address :", "").trim();
+        return displayedPermanentAddress.getText().replace("Permanent Address :", "").trim();
     }
 
     @Step("Fill user name")
@@ -96,15 +89,18 @@ public class TextBoxPage extends BasePage {
 
     @Step("Click submit button")
     public TextBoxPage clickSubmit(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", submitBtn);
         return this;
     }
 
     @Step("Fill out complete text box form")
-    public TextBoxPage fiilUpTextBoxForm(UserTextBox userTextBox){
+    public TextBoxPage fillUpTextBoxForm(UserTextBox userTextBox){
         fillUserName(userTextBox.getName()).fillUserEmail(userTextBox.getEmail())
                 .fillCurrentAddress(userTextBox.getCurrentAddress())
                 .fillPermanentAddress(userTextBox.getPermanentAddress()).clickSubmit();
         return this;
     }
 }
+// Почему так: Статические мутируемые поля — источник race condition.
+// DriverManager уже выполняет роль держателя драйвера;
+// дублировать эту логику в каждом driver-классе — нарушение принципа Single Responsibility.

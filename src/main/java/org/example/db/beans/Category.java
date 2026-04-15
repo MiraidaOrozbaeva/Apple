@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class Category {
 
     public static List<Category> getAllFromCategory() throws SQLException {
         String query = "SELECT * FROM category;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Category.class);
         }
     }
@@ -48,7 +48,7 @@ public class Category {
     public static Category getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM category WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -60,7 +60,7 @@ public class Category {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO category (name, last_update) VALUES (?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 category.getName(),
                 category.getLast_update())){
 
@@ -81,7 +81,7 @@ public class Category {
 
         validateColumn(column);
         String query = "UPDATE category SET " + column + " = ? WHERE category_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, category_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, category_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -95,7 +95,7 @@ public class Category {
 
         Category categoryToDelete = getBy("category_id", category_id);
         String query = "DELETE FROM category WHERE category_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, category_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, category_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

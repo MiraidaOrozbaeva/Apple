@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class Language {
 
     public static List<Language> getAllFromLanguage() throws SQLException {
         String query = "SELECT * FROM language;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Language.class);
         }
     }
@@ -48,7 +48,7 @@ public class Language {
     public static Language getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM language WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -60,7 +60,7 @@ public class Language {
         long startTime = System.currentTimeMillis();
 
         String query = "INSERT INTO language (name, last_update) VALUES (?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 language.getName(),
                 language.getLast_update())){
 
@@ -81,7 +81,7 @@ public class Language {
 
         validateColumn(column);
         String query = "UPDATE language SET " + column + " = ? WHERE language_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, language_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, language_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -95,7 +95,7 @@ public class Language {
 
         Language languageToDelete = getBy("language_id", language_id);
         String query = "DELETE FROM language WHERE language_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, language_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, language_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

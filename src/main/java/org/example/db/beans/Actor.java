@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class Actor {
 
     public static List<Actor> getAllFromActor() throws SQLException {
         String query = "SELECT * FROM actor;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Actor.class);
         }
     }
@@ -49,7 +49,7 @@ public class Actor {
     public static Actor getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM actor WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -61,7 +61,7 @@ public class Actor {
         long startTime = System.currentTimeMillis(); // запоминаем время начала
 
         String query = "INSERT INTO actor (first_name, last_name, last_update) VALUES (?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 actor.getFirst_name(),
                 actor.getLast_name(),
                 actor.getLast_update())) {
@@ -84,7 +84,7 @@ public class Actor {
         validateColumn(column);
         String query = "UPDATE actor SET " + column + " = ? WHERE actor_id = ?";
         // в update (возвращает int — количество затронутых строк):
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, actorId);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, actorId);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -98,7 +98,7 @@ public class Actor {
 
         Actor actorToDelete = getBy("actor_id", actorId); // сохраняем до удаления
         String query = "DELETE FROM actor WHERE actor_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, actorId); // ← сохраняем результат
+        int affectedRows = DatabaseConnection.makeUpdate(query, actorId); // ← сохраняем результат
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

@@ -14,8 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.*;
 
-import static org.example.demoqa.drivers.ChromeWebDriver.driver;
-
 public class PracticeFormPage extends BasePage {
 
     @FindBy(id = "firstName")
@@ -119,7 +117,7 @@ public class PracticeFormPage extends BasePage {
         String month = dateMonthYearParts[1];
         String year = dateMonthYearParts[2];
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", datePickerInput);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", datePickerInput);
 
         WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15));
 
@@ -137,7 +135,7 @@ public class PracticeFormPage extends BasePage {
                         "and not(contains(@class, 'react-datepicker__day--outside-month')) " +
                         "and text() = '" + date + "']")));
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dayElement);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", dayElement);
 
         return this;
     }
@@ -161,19 +159,19 @@ public class PracticeFormPage extends BasePage {
 
     @Step("Select sports as hobbies")
     public PracticeFormPage selectSportsAsHobbies() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectSports);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", hobbiesSelectSports);
         return this;
     }
 
     @Step("Select reading as hobbies")
     public PracticeFormPage selectReadingAsHobbies() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectReading);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", hobbiesSelectReading);
         return this;
     }
 
     @Step("Select music as hobbies")
     public PracticeFormPage selectMusicAsHobbies() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hobbiesSelectMusic);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", hobbiesSelectMusic);
         return this;
     }
 
@@ -219,7 +217,7 @@ public class PracticeFormPage extends BasePage {
 
     @Step("Click submit button")
     public PracticeFormPage submit(){
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitBtn);
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].click();", submitBtn);
         return this;
     }
 

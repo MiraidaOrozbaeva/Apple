@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class Address {
 
     public static List<Address> getAllFromAddress() throws SQLException {
         String query = "SELECT * FROM address;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Address.class);
         }
     }
@@ -53,7 +53,7 @@ public class Address {
     public static Address getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM address WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -66,7 +66,7 @@ public class Address {
 
         String query = "INSERT INTO address (address, address2, district, city_id, postal_code, phone, last_update) " +
                 "VALUES (?, ?, ?, ?, ?, ?, NOW())";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 address1.getAddress(),
                 address1.getAddress2(),
                 address1.getDistrict(),
@@ -91,7 +91,7 @@ public class Address {
 
         validateColumn(column);
         String query = "UPDATE address SET " + column + " = ? WHERE address_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, address_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, address_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -105,7 +105,7 @@ public class Address {
 
         Address addressToDelete = getBy("address_id", address_id);
         String query = "DELETE FROM address WHERE address_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, address_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, address_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

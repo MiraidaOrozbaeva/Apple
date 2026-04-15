@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +40,7 @@ public class Film_category {
 
     public static List<Film_category> getAllFromFilmCategory() throws SQLException {
         String query = "SELECT * FROM film_category;";
-        try(ResultSet resultSet = DB_Connection.makeQuery(query)){
+        try(ResultSet resultSet = DatabaseConnection.makeQuery(query)){
             return new BeanProcessor().toBeanList(resultSet, Film_category.class);
         }
     }
@@ -48,7 +48,7 @@ public class Film_category {
     public static Film_category getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM film_category WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()){
             return null;
         } else {
@@ -59,8 +59,9 @@ public class Film_category {
     public static Film_category insert(Film_category filmCategory) throws SQLException {
         long startTime = System.currentTimeMillis();
 
-        String query = "INSERT INTO film_category (category_id, last_update) VALUES (?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        String query = "INSERT INTO film_category (film_id, category_id, last_update) VALUES (?, ?, ?)";
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
+                filmCategory.getFilm_id(),
                 filmCategory.getCategory_id(),
                 filmCategory.getLast_update())){
 
@@ -81,7 +82,7 @@ public class Film_category {
 
         validateColumn(column);
         String query = "UPDATE film_category SET " + column + " = ? WHERE film_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, film_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, film_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -95,7 +96,7 @@ public class Film_category {
 
         Film_category filmCategoryToDelete = getBy("film_id", film_id);
         String query = "DELETE FROM film_category WHERE film_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, film_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, film_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;

@@ -6,13 +6,13 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 import java.sql.*;
 
-public class DB_Connection {
+public class DatabaseConnection {
 
     @Getter
     private static Connection connection;
     private static Statement statement;
 
-    private DB_Connection(){
+    private DatabaseConnection(){
         // singleton pattern
         // private конструктор — запрещает писать new DB_Connection() снаружи.
         // Все методы static, значит объект вообще не нужен.

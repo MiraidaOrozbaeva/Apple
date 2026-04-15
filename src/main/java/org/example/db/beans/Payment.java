@@ -3,7 +3,7 @@ package org.example.db.beans;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.dbutils.BeanProcessor;
-import org.example.db.db_utils.DB_Connection;
+import org.example.db.db_utils.DatabaseConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class Payment {
 
     public static List<Payment> getAllCFromPayment() throws SQLException {
         String query = "SELECT * FROM payment;";
-        try (ResultSet resultSet = DB_Connection.makeQuery(query)) {
+        try (ResultSet resultSet = DatabaseConnection.makeQuery(query)) {
             return new BeanProcessor().toBeanList(resultSet, Payment.class);
         }
     }
@@ -53,7 +53,7 @@ public class Payment {
     public static Payment getBy(String column, int value) throws SQLException {
         validateColumn(column);
         String query = "SELECT * FROM payment WHERE " + column + " = ?; ";
-        ResultSet resultSet = DB_Connection.makeQuery(query, value);
+        ResultSet resultSet = DatabaseConnection.makeQuery(query, value);
         if (!resultSet.next()) {
             return null;
         } else {
@@ -66,7 +66,7 @@ public class Payment {
 
         String query = "INSERT INTO payment (customer_id, staff_id, rental_id, amount, payment_date) " +
                 "VALUES (?, ?, ?, ?, ?)";
-        try (ResultSet generatedKeys = DB_Connection.makeInsert(query,
+        try (ResultSet generatedKeys = DatabaseConnection.makeInsert(query,
                 payment.getCustomer_id(),
                 payment.getStaff_id(),
                 payment.getRental_id(),
@@ -90,7 +90,7 @@ public class Payment {
 
         validateColumn(column);
         String query = "UPDATE payment SET " + column + " = ? WHERE payment_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, newValue, payment_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, newValue, payment_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
@@ -104,7 +104,7 @@ public class Payment {
 
         Payment paymentToDelete = getBy("payment_id", payment_id);
         String query = "DELETE FROM payment WHERE payment_id = ?";
-        int affectedRows = DB_Connection.makeUpdate(query, payment_id);
+        int affectedRows = DatabaseConnection.makeUpdate(query, payment_id);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
