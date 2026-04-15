@@ -19,4 +19,10 @@ public interface AppConfig extends Config {
 
     @Key("user")
     String user();
+
+    @Key("db.password")
+    String dbPassword();
+
+    @Key("browser")
+    String browser();
 }

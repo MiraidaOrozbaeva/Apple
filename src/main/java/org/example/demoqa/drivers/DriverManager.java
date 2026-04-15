@@ -1,7 +1,7 @@
 package org.example.demoqa.drivers;
 
 import io.qameta.allure.Step;
-import org.example.demoqa.utils.FileReaderUtil;
+import org.example.utils.file.ConfigurationManager;
 import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
@@ -11,7 +11,7 @@ public class DriverManager {
     @Step("Initialize WebDriver")
     public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
-            switch (FileReaderUtil.getValue("browser").toLowerCase()) {
+            switch (ConfigurationManager.getBaseConfig().browser().toLowerCase()) {
                 case "chrome":
                     driverThreadLocal.set(ChromeWebDriver.loadChromeDriver());
                     break;
@@ -28,7 +28,7 @@ public class DriverManager {
                     throw new IllegalArgumentException("Wrong driver name");
             }
         }
-        System.out.println("BROWSER: = " + System.getenv("BROWSER IS: "));
+        System.out.println("BROWSER: = " + ConfigurationManager.getBaseConfig().browser());
         return driverThreadLocal.get();
     }
 

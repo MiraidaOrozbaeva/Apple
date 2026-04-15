@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 @Tag("UI")
 public class TextBoxTest extends BaseTest {
 
-
     @Test
     @Tag("TextBoxTest")
     @DisplayName("Fill up text box form with created user details")

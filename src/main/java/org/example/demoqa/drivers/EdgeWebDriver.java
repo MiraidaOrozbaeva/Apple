@@ -6,11 +6,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class EdgeWebDriver {
 
-    public static WebDriver driver;
-
     public static WebDriver loadEdgeWebDriver() {
         WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
         return driver;
     }

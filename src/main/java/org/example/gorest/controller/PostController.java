@@ -2,7 +2,6 @@ package org.example.gorest.controller;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.example.gorest.HttpRequest;
 import org.example.gorest.endPoint.EndPoint;
 import org.example.gorest.models.Post;
 

@@ -1,6 +1,5 @@
 package gorestTests.api;
 
-
 import org.assertj.core.api.Assertions;
 import org.example.gorest.controller.CommentController;
 import org.example.gorest.controller.PostController;
@@ -12,6 +11,8 @@ import org.example.gorest.models.Post;
 import org.example.gorest.models.ToDo;
 import org.example.gorest.models.User;
 import org.example.gorest.testdata.RandomDataGenerator;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -23,10 +24,22 @@ public class UsersTest {
     PostController postController = new PostController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
     CommentController commentController = new CommentController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
     ToDoController toDoController = new ToDoController(ConfigurationManager.getBaseConfig().gorestBaseUrl());
+    private Integer userId;
+    private Integer postId;
 
-    Integer idishka = 8421831;
-    Integer newIdishka = 8421832;
-    Integer post_id = 275331;
+    @BeforeEach
+    void setUp() {
+        User user = RandomDataGenerator.createRandomUser();
+        userId = userController.createNewUser(user).getId();
+        Post post = RandomDataGenerator.createRandomPost();
+        postId = postController.createUserPost(post, userId).getId();
+        // postId создаётся аналогично
+    }
+
+    @AfterEach
+    void tearDown() {
+        userController.deleteUser(userId);
+    }
 
     @Test
     void performFullCrudOperationsForUserTest() {
@@ -75,10 +88,10 @@ public class UsersTest {
     void postTest() {
         System.out.println("GET ALL USER'S POSTS: " + Arrays.toString(postController.getAllUsersPosts()));
 
-        System.out.println("GET POST BY USER ID: " + Arrays.toString(postController.getUserPostsById(newIdishka)));
+        System.out.println("GET POST BY USER ID: " + Arrays.toString(postController.getUserPostsById(userId)));
 
         Post post = RandomDataGenerator.createRandomPost();
-        Post createdPost = postController.createUserPost(post, newIdishka);
+        Post createdPost = postController.createUserPost(post, userId);
         System.out.println("CREATE USER POST: " + createdPost);
 
 //        postController.deletePost(newIdishka);
@@ -88,23 +101,21 @@ public class UsersTest {
     @Tag("SMOKE")
     void commentTest() {
         System.out.println("GET USER'S COMMENTS BY ID: " + Arrays.toString(commentController
-                .getUserCommentsById(newIdishka)));
+                .getUserCommentsById(userId)));
 
         Comment comment = Comment.builder().name("Sandy Hand").email("olivia.murazik@yahoo.com")
                 .body(RandomDataGenerator.randomBody()).build();
-        Comment createdComment = commentController.createUserComments(comment, post_id);
+        Comment createdComment = commentController.createUserComments(comment, postId);
         System.out.println("CREATE POST COMMENT: " + createdComment);
     }
 
     @Test
     @Tag("SMOKE")
     void toDoTest() {
-        System.out.println("GET USER'S TODOS BY ID: " + Arrays.toString(toDoController.getUserToDosById(newIdishka)));
+        System.out.println("GET USER'S TODOS BY ID: " + Arrays.toString(toDoController.getUserToDosById(userId)));
 
         ToDo toDo = ToDo.builder().title(RandomDataGenerator.randomTitle()).due_on("5:30am").status("pending").build();
-        ToDo createdToDo = toDoController.createUserToDo(toDo, newIdishka);
+        ToDo createdToDo = toDoController.createUserToDo(toDo, userId);
         System.out.println("CREATE POST COMMENT: " + createdToDo);
     }
-
-
 }

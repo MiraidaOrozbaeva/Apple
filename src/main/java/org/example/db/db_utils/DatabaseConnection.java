@@ -20,13 +20,12 @@ public class DatabaseConnection {
     }
 
     private static PGSimpleDataSource getBaseDataSource(String dataBase){
-        PGSimpleDataSource pgSimpleDataSource = new PGSimpleDataSource(){{ // PGSimpleDataSource — это "описание" как подключиться к БД, сам коннект ещё не открыт
-            setServerName(ConfigurationManager.getBaseConfig().server()); // {{...}} — Double Brace Initialization, анонимный блок инициализации. Можно написать и обычно:
-            setPortNumber(ConfigurationManager.getBaseConfig().port()); // можно и так, результат одинаковый: PGSimpleDataSource ds = new PGSimpleDataSource(); ds.setServerName(...); ds.setPortNumber(...);
-            setUser(ConfigurationManager.getBaseConfig().user());
-            setPassword("12345");
-            setDatabaseName(dataBase);
-        }};
+        PGSimpleDataSource pgSimpleDataSource = new PGSimpleDataSource();  // PGSimpleDataSource — это "описание" как подключиться к БД, сам коннект ещё не открыт
+            pgSimpleDataSource.setServerName(ConfigurationManager.getBaseConfig().server()); // {{...}} — Double Brace Initialization, анонимный блок инициализации. Можно написать и обычно:
+            pgSimpleDataSource.setPortNumber(ConfigurationManager.getBaseConfig().port()); // можно и так, результат одинаковый: PGSimpleDataSource ds = new PGSimpleDataSource(); ds.setServerName(...); ds.setPortNumber(...);
+            pgSimpleDataSource.setUser(ConfigurationManager.getBaseConfig().user());
+            pgSimpleDataSource.setPassword(ConfigurationManager.getBaseConfig().dbPassword());
+            pgSimpleDataSource.setDatabaseName(dataBase);
         return pgSimpleDataSource;
     }
 
